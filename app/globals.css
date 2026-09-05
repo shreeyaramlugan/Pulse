@@ -1,26 +1,578 @@
 @import "tailwindcss";
 
+/*
+
+| Pulse — GLOBAL THEME SYSTEM
+
+   BASE / FALLBACK THEME
+
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --background: #0b0b0d;
+  --foreground: #f5f5f5;
+
+  --card: #141417;
+  --card-foreground: #f5f5f5;
+
+  /* Brand */
+  --primary: #ffffff;
+  --primary-foreground: #0b0b0d;
+
+  --secondary: #1c1c21;
+  --secondary-foreground: #e5e5e7;
+
+  /* Supporting */
+  --muted: #18181b;
+  --muted-foreground: #8a8a93;
+
+  --accent: #a1a1aa;
+  --accent-foreground: #09090b;
+
+  /* UI */
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #71717a;
+
+  /* Status */
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #f87171;
+
+  /* Typography */
+  --font-heading: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Effects */
+  --shadow-theme: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glow-theme: 0 0 20px rgba(255, 255, 255, 0.05);
 }
+
+
+/* ==========================================================================
+   OBSIDIAN
+   ========================================================================== */
+
+[data-theme="obsidian"] {
+  --background: #0b0b0d;
+  --foreground: #f5f5f5;
+
+  --card: #141417;
+  --card-foreground: #f5f5f5;
+
+  --primary: #ffffff;
+  --primary-foreground: #0b0b0d;
+
+  --secondary: #1c1c21;
+  --secondary-foreground: #e5e5e7;
+
+  --muted: #18181b;
+  --muted-foreground: #8a8a93;
+
+  --accent: #a1a1aa;
+  --accent-foreground: #09090b;
+
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #71717a;
+
+  --success: #4ade80;
+  --warning: #facc15;
+  --danger: #f87171;
+--font-heading: var(--font-inter), sans-serif;
+--font-body: var(--font-inter), sans-serif;
+--font-mono: var(--font-jetbrains), monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-theme: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glow-theme: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+
+/* ==========================================================================
+   FUTURISTIC TECHNICAL
+   ========================================================================== */
+
+[data-theme="futuristic"] {
+  --background: #07111a;
+  --foreground: #e6f1f5;
+
+  --card: #0b1924;
+  --card-foreground: #e6f1f5;
+
+  --primary: #38bdf8;
+  --primary-foreground: #031018;
+
+  --secondary: #102532;
+  --secondary-foreground: #b9d9e8;
+
+  --muted: #0e202c;
+  --muted-foreground: #6f94a5;
+
+  --accent: #22d3ee;
+  --accent-foreground: #031014;
+
+  --border: #193646;
+  --input: #193646;
+  --ring: #38bdf8;
+
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+
+--font-heading: var(--font-space-grotesk), sans-serif;
+--font-body: var(--font-inter), sans-serif;
+--font-mono: var(--font-jetbrains), monospace;
+
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --shadow-theme: 0 10px 35px rgba(0, 0, 0, 0.4);
+  --glow-theme: 0 0 25px rgba(56, 189, 248, 0.12);
+}
+
+
+/* ==========================================================================
+   CYBERPUNK DARK NEON
+   ========================================================================== */
+
+[data-theme="cyberpunk"] {
+  --background: #08060d;
+  --foreground: #f8f7ff;
+
+  --card: #120d1c;
+  --card-foreground: #f8f7ff;
+
+  --primary: #ff2bd6;
+  --primary-foreground: #160012;
+
+  --secondary: #191127;
+  --secondary-foreground: #e9d5ff;
+
+  --muted: #171020;
+  --muted-foreground: #9d8faf;
+
+  --accent: #00f5ff;
+  --accent-foreground: #001417;
+
+  --border: #332047;
+  --input: #332047;
+  --ring: #ff2bd6;
+
+  --success: #39ff88;
+  --warning: #ffe600;
+  --danger: #ff3864;
+
+--font-heading: var(--font-space-grotesk), sans-serif;
+--font-body: var(--font-inter), sans-serif;
+--font-mono: var(--font-jetbrains), monospace;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 7px;
+  --radius-xl: 10px;
+
+  --shadow-theme: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --glow-theme: 0 0 30px rgba(255, 43, 214, 0.2);
+}
+
+
+/* ==========================================================================
+   ORGANIC
+   ========================================================================== */
+
+[data-theme="organic"] {
+  --background: #f4f1e8;
+  --foreground: #29332b;
+
+  --card: #fbfaf5;
+  --card-foreground: #29332b;
+
+  --primary: #657153;
+  --primary-foreground: #f8f6ef;
+
+  --secondary: #dddccb;
+  --secondary-foreground: #3c4537;
+
+  --muted: #eae8dc;
+  --muted-foreground: #73786d;
+
+  --accent: #b77a55;
+  --accent-foreground: #fff8f1;
+
+  --border: #d7d4c6;
+  --input: #d7d4c6;
+  --ring: #657153;
+
+  --success: #63845a;
+  --warning: #b78b45;
+  --danger: #a85c50;
+
+--font-heading: var(--font-dm-sans), sans-serif;
+--font-body: var(--font-dm-sans), sans-serif;
+--font-mono: var(--font-dm-mono), monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --shadow-theme: 0 8px 25px rgba(57, 63, 47, 0.08);
+  --glow-theme: 0 0 20px rgba(101, 113, 83, 0.08);
+}
+
+
+/* ==========================================================================
+   MISSION / DEV FOCUSED
+   ========================================================================== */
+
+[data-theme="mission"] {
+  --background: #101214;
+  --foreground: #e8e9ea;
+
+  --card: #17191c;
+  --card-foreground: #e8e9ea;
+
+  --primary: #d6ff4b;
+  --primary-foreground: #101400;
+
+  --secondary: #202328;
+  --secondary-foreground: #d0d3d6;
+
+  --muted: #1b1e22;
+  --muted-foreground: #858a91;
+
+  --accent: #6ee7b7;
+  --accent-foreground: #04130d;
+
+  --border: #2a2e34;
+  --input: #2a2e34;
+  --ring: #d6ff4b;
+
+  --success: #6ee7b7;
+  --warning: #f5c451;
+  --danger: #f87171;
+
+--font-heading: var(--font-space-grotesk), sans-serif;
+--font-body: var(--font-inter), sans-serif;
+--font-mono: var(--font-jetbrains), monospace;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --shadow-theme: 0 8px 25px rgba(0, 0, 0, 0.35);
+  --glow-theme: 0 0 18px rgba(214, 255, 75, 0.08);
+}
+
+
+/* ==========================================================================
+   CHAI
+   ========================================================================== */
+
+[data-theme="chai"] {
+  --background: #faf3e8;
+  --foreground: #1c1208;
+
+  --card: #fff9f0;
+  --card-foreground: #1c1208;
+
+  --primary: #c8651b;
+  --primary-foreground: #fff8ef;
+
+  --secondary: #e8d5bf;
+  --secondary-foreground: #4b2a16;
+
+  --muted: #f0e4d5;
+  --muted-foreground: #806a57;
+
+  --accent: #8b3e0a;
+  --accent-foreground: #fff8ef;
+
+  --border: #dfcab4;
+  --input: #dfcab4;
+  --ring: #c8651b;
+
+  --success: #668a55;
+  --warning: #c68a32;
+  --danger: #b5533d;
+
+--font-heading: var(--font-playfair), serif;
+--font-body: var(--font-dm-sans), sans-serif;
+--font-mono: var(--font-dm-mono), monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-theme: 0 10px 30px rgba(82, 46, 20, 0.1);
+  --glow-theme: 0 0 20px rgba(200, 101, 27, 0.08);
+}
+
+
+/* ==========================================================================
+   PRETTY IN PINK
+   ========================================================================== */
+
+[data-theme="pink"] {
+  --background: #fff5f8;
+  --foreground: #3a2730;
+
+  --card: #ffffff;
+  --card-foreground: #3a2730;
+
+  --primary: #e889a8;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f7dce5;
+  --secondary-foreground: #613b48;
+
+  --muted: #f9eaf0;
+  --muted-foreground: #92707c;
+
+  --accent: #c85c86;
+  --accent-foreground: #ffffff;
+
+  --border: #f0ccd9;
+  --input: #f0ccd9;
+  --ring: #e889a8;
+
+  --success: #70a58a;
+  --warning: #d6a24a;
+  --danger: #d66a79;
+
+--font-heading: var(--font-dm-sans), sans-serif;
+--font-body: var(--font-dm-sans), sans-serif;
+--font-mono: var(--font-dm-mono), monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+
+  --shadow-theme: 0 10px 30px rgba(154, 73, 104, 0.1);
+  --glow-theme: 0 0 25px rgba(232, 137, 168, 0.12);
+}
+
+
+/* ==========================================================================
+   TAILWIND / SHADCN SEMANTIC TOKENS
+   ========================================================================== */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+
+/* ==========================================================================
+   GLOBAL ELEMENTS
+   ========================================================================== */
+
+* {
+  border-color: var(--border);
 }
 
-body {
+html {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family: var(--font-body);
+
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease;
+} 
+
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+
+/* ==========================================================================
+   SELECTION
+   ========================================================================== */
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+
+/* ==========================================================================
+   FOCUS
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+
+/* ==========================================================================
+   THEME EFFECT HELPERS
+   ========================================================================== */
+
+.theme-shadow {
+  box-shadow: var(--shadow-theme);
+}
+
+.theme-glow {
+  box-shadow: var(--glow-theme);
+}
+
+[data-theme="obsidian"],
+[data-theme="futuristic"],
+[data-theme="cyberpunk"],
+[data-theme="mission"] {
+  color-scheme: dark;
+}
+
+[data-theme="organic"],
+[data-theme="chai"],
+[data-theme="pink"] {
+  color-scheme: light;
+}
+
+/* ==========================================================================
+   THEME-SPECIFIC ATMOSPHERE
+   ========================================================================== */
+
+[data-theme="futuristic"] body {
+  background-image:
+    linear-gradient(
+      rgba(56, 189, 248, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px;
+}
+
+[data-theme="cyberpunk"] body {
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 43, 214, 0.025) 0%,
+      transparent 40%
+    ),
+    linear-gradient(
+      315deg,
+      rgba(0, 245, 255, 0.025) 0%,
+      transparent 40%
+    );
+}
+
+[data-theme="mission"] body {
+  background-image:
+    linear-gradient(
+      rgba(214, 255, 75, 0.018) 1px,
+      transparent 1px
+    );
+
+  background-size: 24px 24px;
+}
+
+[data-theme="organic"] body,
+[data-theme="chai"] body,
+[data-theme="pink"] body {
+  background-image: none;
 }
