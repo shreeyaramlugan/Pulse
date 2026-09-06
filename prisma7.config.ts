@@ -2,7 +2,9 @@
 // npm install --save-dev prisma dotenv
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
+import { PrismaClient } from "./app/generated/prisma/client";
 
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined; };
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
