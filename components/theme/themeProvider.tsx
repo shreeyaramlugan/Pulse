@@ -24,7 +24,7 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
-const STORAGE_KEY = "automation-theme";
+const STORAGE_KEY = "Pulse-theme";
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<ThemeName>(defaultTheme);

@@ -78,10 +78,14 @@ export function LoginForm() {
           "Unable to create login session."
       );
     }
-
+if (sessionData.user.onboardingCompleted) {
+  router.push("/dashboard");
+} else {
+  router.push("/onboarding");
+}
     // 4. Firebase client auth + server session
     // are now both established.
-    router.replace("/dashboard");
+
     router.refresh();
   }
 
@@ -304,7 +308,7 @@ export function LoginForm() {
             <span className="text-muted-foreground">
               Email:
             </span>{" "}
-            demo@automation.local
+            demo@Pulse.local
           </p>
 
           <p>

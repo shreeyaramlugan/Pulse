@@ -40,14 +40,16 @@ export type UserMinAggregateOutputType = {
   name: string | null
   avatarUrl: string | null
   timezone: string | null
-  currency: string | null
   weekStartsOn: number | null
-  dateFormat: string | null
-  timeFormat: string | null
-  theme: $Enums.Theme | null
-  language: string | null
+  notificationPreference: string | null
+  theme: string | null
+  onboardingComplete: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  currency: string | null
+  dateFormat: string | null
+  timeFormat: string | null
+  language: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -56,14 +58,16 @@ export type UserMaxAggregateOutputType = {
   name: string | null
   avatarUrl: string | null
   timezone: string | null
-  currency: string | null
   weekStartsOn: number | null
-  dateFormat: string | null
-  timeFormat: string | null
-  theme: $Enums.Theme | null
-  language: string | null
+  notificationPreference: string | null
+  theme: string | null
+  onboardingComplete: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  currency: string | null
+  dateFormat: string | null
+  timeFormat: string | null
+  language: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -72,14 +76,16 @@ export type UserCountAggregateOutputType = {
   name: number
   avatarUrl: number
   timezone: number
-  currency: number
   weekStartsOn: number
-  dateFormat: number
-  timeFormat: number
+  notificationPreference: number
   theme: number
-  language: number
+  onboardingComplete: number
   createdAt: number
   updatedAt: number
+  currency: number
+  dateFormat: number
+  timeFormat: number
+  language: number
   _all: number
 }
 
@@ -98,14 +104,16 @@ export type UserMinAggregateInputType = {
   name?: true
   avatarUrl?: true
   timezone?: true
-  currency?: true
   weekStartsOn?: true
-  dateFormat?: true
-  timeFormat?: true
+  notificationPreference?: true
   theme?: true
-  language?: true
+  onboardingComplete?: true
   createdAt?: true
   updatedAt?: true
+  currency?: true
+  dateFormat?: true
+  timeFormat?: true
+  language?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -114,14 +122,16 @@ export type UserMaxAggregateInputType = {
   name?: true
   avatarUrl?: true
   timezone?: true
-  currency?: true
   weekStartsOn?: true
-  dateFormat?: true
-  timeFormat?: true
+  notificationPreference?: true
   theme?: true
-  language?: true
+  onboardingComplete?: true
   createdAt?: true
   updatedAt?: true
+  currency?: true
+  dateFormat?: true
+  timeFormat?: true
+  language?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -130,14 +140,16 @@ export type UserCountAggregateInputType = {
   name?: true
   avatarUrl?: true
   timezone?: true
-  currency?: true
   weekStartsOn?: true
-  dateFormat?: true
-  timeFormat?: true
+  notificationPreference?: true
   theme?: true
-  language?: true
+  onboardingComplete?: true
   createdAt?: true
   updatedAt?: true
+  currency?: true
+  dateFormat?: true
+  timeFormat?: true
+  language?: true
   _all?: true
 }
 
@@ -233,14 +245,16 @@ export type UserGroupByOutputType = {
   name: string
   avatarUrl: string | null
   timezone: string
-  currency: string
   weekStartsOn: number
-  dateFormat: string
-  timeFormat: string
-  theme: $Enums.Theme
-  language: string
+  notificationPreference: string
+  theme: string
+  onboardingComplete: boolean
   createdAt: Date
   updatedAt: Date
+  currency: string
+  dateFormat: string
+  timeFormat: string
+  language: string
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -272,14 +286,16 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   timezone?: Prisma.StringFilter<"User"> | string
-  currency?: Prisma.StringFilter<"User"> | string
   weekStartsOn?: Prisma.IntFilter<"User"> | number
-  dateFormat?: Prisma.StringFilter<"User"> | string
-  timeFormat?: Prisma.StringFilter<"User"> | string
-  theme?: Prisma.EnumThemeFilter<"User"> | $Enums.Theme
-  language?: Prisma.StringFilter<"User"> | string
+  notificationPreference?: Prisma.StringFilter<"User"> | string
+  theme?: Prisma.StringFilter<"User"> | string
+  onboardingComplete?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  currency?: Prisma.StringFilter<"User"> | string
+  dateFormat?: Prisma.StringFilter<"User"> | string
+  timeFormat?: Prisma.StringFilter<"User"> | string
+  language?: Prisma.StringFilter<"User"> | string
   authAccounts?: Prisma.AuthAccountListRelationFilter
 }
 
@@ -289,14 +305,16 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
   weekStartsOn?: Prisma.SortOrder
-  dateFormat?: Prisma.SortOrder
-  timeFormat?: Prisma.SortOrder
+  notificationPreference?: Prisma.SortOrder
   theme?: Prisma.SortOrder
-  language?: Prisma.SortOrder
+  onboardingComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  dateFormat?: Prisma.SortOrder
+  timeFormat?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   authAccounts?: Prisma.AuthAccountOrderByRelationAggregateInput
 }
 
@@ -309,14 +327,16 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   timezone?: Prisma.StringFilter<"User"> | string
-  currency?: Prisma.StringFilter<"User"> | string
   weekStartsOn?: Prisma.IntFilter<"User"> | number
-  dateFormat?: Prisma.StringFilter<"User"> | string
-  timeFormat?: Prisma.StringFilter<"User"> | string
-  theme?: Prisma.EnumThemeFilter<"User"> | $Enums.Theme
-  language?: Prisma.StringFilter<"User"> | string
+  notificationPreference?: Prisma.StringFilter<"User"> | string
+  theme?: Prisma.StringFilter<"User"> | string
+  onboardingComplete?: Prisma.BoolFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  currency?: Prisma.StringFilter<"User"> | string
+  dateFormat?: Prisma.StringFilter<"User"> | string
+  timeFormat?: Prisma.StringFilter<"User"> | string
+  language?: Prisma.StringFilter<"User"> | string
   authAccounts?: Prisma.AuthAccountListRelationFilter
 }, "id" | "email">
 
@@ -326,14 +346,16 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   timezone?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
   weekStartsOn?: Prisma.SortOrder
-  dateFormat?: Prisma.SortOrder
-  timeFormat?: Prisma.SortOrder
+  notificationPreference?: Prisma.SortOrder
   theme?: Prisma.SortOrder
-  language?: Prisma.SortOrder
+  onboardingComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  dateFormat?: Prisma.SortOrder
+  timeFormat?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -350,14 +372,16 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   timezone?: Prisma.StringWithAggregatesFilter<"User"> | string
-  currency?: Prisma.StringWithAggregatesFilter<"User"> | string
   weekStartsOn?: Prisma.IntWithAggregatesFilter<"User"> | number
-  dateFormat?: Prisma.StringWithAggregatesFilter<"User"> | string
-  timeFormat?: Prisma.StringWithAggregatesFilter<"User"> | string
-  theme?: Prisma.EnumThemeWithAggregatesFilter<"User"> | $Enums.Theme
-  language?: Prisma.StringWithAggregatesFilter<"User"> | string
+  notificationPreference?: Prisma.StringWithAggregatesFilter<"User"> | string
+  theme?: Prisma.StringWithAggregatesFilter<"User"> | string
+  onboardingComplete?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  currency?: Prisma.StringWithAggregatesFilter<"User"> | string
+  dateFormat?: Prisma.StringWithAggregatesFilter<"User"> | string
+  timeFormat?: Prisma.StringWithAggregatesFilter<"User"> | string
+  language?: Prisma.StringWithAggregatesFilter<"User"> | string
 }
 
 export type UserCreateInput = {
@@ -366,14 +390,16 @@ export type UserCreateInput = {
   name: string
   avatarUrl?: string | null
   timezone?: string
-  currency?: string
   weekStartsOn?: number
-  dateFormat?: string
-  timeFormat?: string
-  theme?: $Enums.Theme
-  language?: string
+  notificationPreference?: string
+  theme?: string
+  onboardingComplete?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currency?: string
+  dateFormat?: string
+  timeFormat?: string
+  language?: string
   authAccounts?: Prisma.AuthAccountCreateNestedManyWithoutUserInput
 }
 
@@ -383,14 +409,16 @@ export type UserUncheckedCreateInput = {
   name: string
   avatarUrl?: string | null
   timezone?: string
-  currency?: string
   weekStartsOn?: number
-  dateFormat?: string
-  timeFormat?: string
-  theme?: $Enums.Theme
-  language?: string
+  notificationPreference?: string
+  theme?: string
+  onboardingComplete?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currency?: string
+  dateFormat?: string
+  timeFormat?: string
+  language?: string
   authAccounts?: Prisma.AuthAccountUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -400,14 +428,16 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   authAccounts?: Prisma.AuthAccountUpdateManyWithoutUserNestedInput
 }
 
@@ -417,14 +447,16 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   authAccounts?: Prisma.AuthAccountUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -434,14 +466,16 @@ export type UserCreateManyInput = {
   name: string
   avatarUrl?: string | null
   timezone?: string
-  currency?: string
   weekStartsOn?: number
-  dateFormat?: string
-  timeFormat?: string
-  theme?: $Enums.Theme
-  language?: string
+  notificationPreference?: string
+  theme?: string
+  onboardingComplete?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currency?: string
+  dateFormat?: string
+  timeFormat?: string
+  language?: string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -450,14 +484,16 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -466,14 +502,16 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -482,14 +520,16 @@ export type UserCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
   weekStartsOn?: Prisma.SortOrder
-  dateFormat?: Prisma.SortOrder
-  timeFormat?: Prisma.SortOrder
+  notificationPreference?: Prisma.SortOrder
   theme?: Prisma.SortOrder
-  language?: Prisma.SortOrder
+  onboardingComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  dateFormat?: Prisma.SortOrder
+  timeFormat?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -502,14 +542,16 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
   weekStartsOn?: Prisma.SortOrder
-  dateFormat?: Prisma.SortOrder
-  timeFormat?: Prisma.SortOrder
+  notificationPreference?: Prisma.SortOrder
   theme?: Prisma.SortOrder
-  language?: Prisma.SortOrder
+  onboardingComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  dateFormat?: Prisma.SortOrder
+  timeFormat?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -518,14 +560,16 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   timezone?: Prisma.SortOrder
-  currency?: Prisma.SortOrder
   weekStartsOn?: Prisma.SortOrder
-  dateFormat?: Prisma.SortOrder
-  timeFormat?: Prisma.SortOrder
+  notificationPreference?: Prisma.SortOrder
   theme?: Prisma.SortOrder
-  language?: Prisma.SortOrder
+  onboardingComplete?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  currency?: Prisma.SortOrder
+  dateFormat?: Prisma.SortOrder
+  timeFormat?: Prisma.SortOrder
+  language?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -553,8 +597,8 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type EnumThemeFieldUpdateOperationsInput = {
-  set?: $Enums.Theme
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -581,14 +625,16 @@ export type UserCreateWithoutAuthAccountsInput = {
   name: string
   avatarUrl?: string | null
   timezone?: string
-  currency?: string
   weekStartsOn?: number
-  dateFormat?: string
-  timeFormat?: string
-  theme?: $Enums.Theme
-  language?: string
+  notificationPreference?: string
+  theme?: string
+  onboardingComplete?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currency?: string
+  dateFormat?: string
+  timeFormat?: string
+  language?: string
 }
 
 export type UserUncheckedCreateWithoutAuthAccountsInput = {
@@ -597,14 +643,16 @@ export type UserUncheckedCreateWithoutAuthAccountsInput = {
   name: string
   avatarUrl?: string | null
   timezone?: string
-  currency?: string
   weekStartsOn?: number
-  dateFormat?: string
-  timeFormat?: string
-  theme?: $Enums.Theme
-  language?: string
+  notificationPreference?: string
+  theme?: string
+  onboardingComplete?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  currency?: string
+  dateFormat?: string
+  timeFormat?: string
+  language?: string
 }
 
 export type UserCreateOrConnectWithoutAuthAccountsInput = {
@@ -629,14 +677,16 @@ export type UserUpdateWithoutAuthAccountsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type UserUncheckedUpdateWithoutAuthAccountsInput = {
@@ -645,14 +695,16 @@ export type UserUncheckedUpdateWithoutAuthAccountsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   timezone?: Prisma.StringFieldUpdateOperationsInput | string
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
   weekStartsOn?: Prisma.IntFieldUpdateOperationsInput | number
-  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
-  theme?: Prisma.EnumThemeFieldUpdateOperationsInput | $Enums.Theme
-  language?: Prisma.StringFieldUpdateOperationsInput | string
+  notificationPreference?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  onboardingComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  dateFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  timeFormat?: Prisma.StringFieldUpdateOperationsInput | string
+  language?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -692,14 +744,16 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   avatarUrl?: boolean
   timezone?: boolean
-  currency?: boolean
   weekStartsOn?: boolean
-  dateFormat?: boolean
-  timeFormat?: boolean
+  notificationPreference?: boolean
   theme?: boolean
-  language?: boolean
+  onboardingComplete?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currency?: boolean
+  dateFormat?: boolean
+  timeFormat?: boolean
+  language?: boolean
   authAccounts?: boolean | Prisma.User$authAccountsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -710,14 +764,16 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   avatarUrl?: boolean
   timezone?: boolean
-  currency?: boolean
   weekStartsOn?: boolean
-  dateFormat?: boolean
-  timeFormat?: boolean
+  notificationPreference?: boolean
   theme?: boolean
-  language?: boolean
+  onboardingComplete?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currency?: boolean
+  dateFormat?: boolean
+  timeFormat?: boolean
+  language?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -726,14 +782,16 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   avatarUrl?: boolean
   timezone?: boolean
-  currency?: boolean
   weekStartsOn?: boolean
-  dateFormat?: boolean
-  timeFormat?: boolean
+  notificationPreference?: boolean
   theme?: boolean
-  language?: boolean
+  onboardingComplete?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currency?: boolean
+  dateFormat?: boolean
+  timeFormat?: boolean
+  language?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -742,17 +800,19 @@ export type UserSelectScalar = {
   name?: boolean
   avatarUrl?: boolean
   timezone?: boolean
-  currency?: boolean
   weekStartsOn?: boolean
-  dateFormat?: boolean
-  timeFormat?: boolean
+  notificationPreference?: boolean
   theme?: boolean
-  language?: boolean
+  onboardingComplete?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  currency?: boolean
+  dateFormat?: boolean
+  timeFormat?: boolean
+  language?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatarUrl" | "timezone" | "currency" | "weekStartsOn" | "dateFormat" | "timeFormat" | "theme" | "language" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "avatarUrl" | "timezone" | "weekStartsOn" | "notificationPreference" | "theme" | "onboardingComplete" | "createdAt" | "updatedAt" | "currency" | "dateFormat" | "timeFormat" | "language", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   authAccounts?: boolean | Prisma.User$authAccountsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -771,14 +831,16 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     avatarUrl: string | null
     timezone: string
-    currency: string
     weekStartsOn: number
-    dateFormat: string
-    timeFormat: string
-    theme: $Enums.Theme
-    language: string
+    notificationPreference: string
+    theme: string
+    onboardingComplete: boolean
     createdAt: Date
     updatedAt: Date
+    currency: string
+    dateFormat: string
+    timeFormat: string
+    language: string
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1208,14 +1270,16 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly timezone: Prisma.FieldRef<"User", 'String'>
-  readonly currency: Prisma.FieldRef<"User", 'String'>
   readonly weekStartsOn: Prisma.FieldRef<"User", 'Int'>
-  readonly dateFormat: Prisma.FieldRef<"User", 'String'>
-  readonly timeFormat: Prisma.FieldRef<"User", 'String'>
-  readonly theme: Prisma.FieldRef<"User", 'Theme'>
-  readonly language: Prisma.FieldRef<"User", 'String'>
+  readonly notificationPreference: Prisma.FieldRef<"User", 'String'>
+  readonly theme: Prisma.FieldRef<"User", 'String'>
+  readonly onboardingComplete: Prisma.FieldRef<"User", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly currency: Prisma.FieldRef<"User", 'String'>
+  readonly dateFormat: Prisma.FieldRef<"User", 'String'>
+  readonly timeFormat: Prisma.FieldRef<"User", 'String'>
+  readonly language: Prisma.FieldRef<"User", 'String'>
 }
     
 

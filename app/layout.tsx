@@ -44,7 +44,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Automation",
+  title: "Pulse",
   description:
     "Your personal productivity and business operating system.",
 };

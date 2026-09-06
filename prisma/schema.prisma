@@ -7,23 +7,52 @@ datasource db {
   provider = "postgresql"
 }
 
+enum AuthProvider {
+  GOOGLE
+  EMAIL
+}
+
+enum WeekStart {
+  SUNDAY
+  MONDAY
+}
+
+enum NotificationPreference {
+  ALL
+  IMPORTANT
+  NONE
+}
+
+enum Theme {
+  organic
+  chai
+  cyberpunk
+  futuristic
+  obsidian
+  pink
+}
+
 model User {
-  id           String        @id @default(uuid())
-  email        String        @unique
-  name         String
-  avatarUrl    String?
-  timezone     String        @default("Africa/Johannesburg")
+  id                     String   @id @default(cuid())
+  email                  String   @unique
+  name                   String
+  avatarUrl              String?
+
+  timezone               String   @default("Africa/Johannesburg")
+  weekStartsOn           Int      @default(1)
+  notificationPreference String   @default("ALL")
+  theme                  String   @default("organic")
+  onboardingComplete     Boolean  @default(false)
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
   currency     String        @default("ZAR")
-  weekStartsOn Int           @default(1)
   dateFormat   String        @default("DD/MM/YYYY")
   timeFormat   String        @default("24H")
   language     String        @default("en")
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  theme        Theme         @default(CHAI)
-  authAccounts AuthAccount[]
-}
 
+  authAccounts AuthAccount[]
+} 
 model AuthAccount {
   id         String       @id @default(uuid())
   userId     String
@@ -36,18 +65,4 @@ model AuthAccount {
 
   @@unique([provider, externalId])
   @@index([userId])
-}
-
-enum AuthProvider {
-  GOOGLE
-  EMAIL
-}
-
-enum Theme {
-  ORGANIC
-  CHAI
-  COMMAND_CENTER
-  FUTURISTIC
-  OBSIDIAN
-  PRETTY_IN_PINK
 }

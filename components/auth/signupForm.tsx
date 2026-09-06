@@ -212,8 +212,11 @@ export function SignupForm() {
       /*
        * 4. Redirect
        */
-      router.replace("/dashboard");
-    } catch (error: any) {
+if (credential.user.onboardingCompleted) {
+  router.push("/dashboard");
+} else {
+  router.push("/onboarding");
+}    } catch (error: any) {
       console.error(
         "Email signup failed:",
         error
@@ -265,7 +268,11 @@ export function SignupForm() {
       /*
        * 4. Redirect
        */
-      router.replace("/dashboard");
+      if (credential.user.onboardingCompleted) {
+        router.push("/dashboard");
+      } else {
+        router.push("/onboarding");
+      }
     }  catch (error: any) {
       console.error(
         "Google login failed:",

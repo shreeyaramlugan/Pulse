@@ -84,7 +84,7 @@ export async function POST(request: Request) {
               email,
               name:
                 decodedToken.name ??
-                "NEXUS User",
+                "Pulse User",
               avatarUrl:
                 decodedToken.picture ??
                 null,
@@ -112,7 +112,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error(
-      "NEXUS user sync failed:",
+      "Pulse user sync failed:",
       error
     );
 

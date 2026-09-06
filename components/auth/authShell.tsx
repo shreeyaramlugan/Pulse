@@ -38,7 +38,7 @@ export function AuthShell({
             <Sparkles className="h-3.5 w-3.5 text-primary" />
 
             <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              Automation
+              Pulse
             </span>
 
             <Sparkles className="h-3.5 w-3.5 text-primary" />

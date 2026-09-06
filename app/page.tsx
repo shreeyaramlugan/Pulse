@@ -6,7 +6,7 @@ export default function Home() {
       <div className="mx-auto max-w-2xl space-y-8">
         <div>
           <p className="mb-2 font-mono text-xs uppercase tracking-widest text-primary">
-            Automation
+            Pulse
           </p>
 
           <h1 className="text-4xl font-bold">

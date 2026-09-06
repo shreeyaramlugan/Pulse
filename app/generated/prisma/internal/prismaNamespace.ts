@@ -611,14 +611,16 @@ export const UserScalarFieldEnum = {
   name: 'name',
   avatarUrl: 'avatarUrl',
   timezone: 'timezone',
-  currency: 'currency',
   weekStartsOn: 'weekStartsOn',
+  notificationPreference: 'notificationPreference',
+  theme: 'theme',
+  onboardingComplete: 'onboardingComplete',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  currency: 'currency',
   dateFormat: 'dateFormat',
   timeFormat: 'timeFormat',
-  theme: 'theme',
-  language: 'language',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  language: 'language'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -628,10 +630,10 @@ export const AuthAccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   provider: 'provider',
-  externalId: 'externalId',
   email: 'email',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  externalId: 'externalId'
 } as const
 
 export type AuthAccountScalarFieldEnum = (typeof AuthAccountScalarFieldEnum)[keyof typeof AuthAccountScalarFieldEnum]
@@ -696,16 +698,9 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Theme'
+ * Reference to a field of type 'Boolean'
  */
-export type EnumThemeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Theme'>
-    
-
-
-/**
- * Reference to a field of type 'Theme[]'
- */
-export type ListEnumThemeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Theme[]'>
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

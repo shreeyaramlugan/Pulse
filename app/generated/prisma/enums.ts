@@ -17,13 +17,30 @@ export const AuthProvider = {
 export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
 
 
+export const WeekStart = {
+  SUNDAY: 'SUNDAY',
+  MONDAY: 'MONDAY'
+} as const
+
+export type WeekStart = (typeof WeekStart)[keyof typeof WeekStart]
+
+
+export const NotificationPreference = {
+  ALL: 'ALL',
+  IMPORTANT: 'IMPORTANT',
+  NONE: 'NONE'
+} as const
+
+export type NotificationPreference = (typeof NotificationPreference)[keyof typeof NotificationPreference]
+
+
 export const Theme = {
-  ORGANIC: 'ORGANIC',
-  CHAI: 'CHAI',
-  COMMAND_CENTER: 'COMMAND_CENTER',
-  FUTURISTIC: 'FUTURISTIC',
-  OBSIDIAN: 'OBSIDIAN',
-  PRETTY_IN_PINK: 'PRETTY_IN_PINK'
+  organic: 'organic',
+  chai: 'chai',
+  cyberpunk: 'cyberpunk',
+  futuristic: 'futuristic',
+  obsidian: 'obsidian',
+  pink: 'pink'
 } as const
 
 export type Theme = (typeof Theme)[keyof typeof Theme]

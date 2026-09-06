@@ -28,30 +28,30 @@ export type AuthAccountMinAggregateOutputType = {
   id: string | null
   userId: string | null
   provider: $Enums.AuthProvider | null
-  externalId: string | null
   email: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  externalId: string | null
 }
 
 export type AuthAccountMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   provider: $Enums.AuthProvider | null
-  externalId: string | null
   email: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  externalId: string | null
 }
 
 export type AuthAccountCountAggregateOutputType = {
   id: number
   userId: number
   provider: number
-  externalId: number
   email: number
   createdAt: number
   updatedAt: number
+  externalId: number
   _all: number
 }
 
@@ -60,30 +60,30 @@ export type AuthAccountMinAggregateInputType = {
   id?: true
   userId?: true
   provider?: true
-  externalId?: true
   email?: true
   createdAt?: true
   updatedAt?: true
+  externalId?: true
 }
 
 export type AuthAccountMaxAggregateInputType = {
   id?: true
   userId?: true
   provider?: true
-  externalId?: true
   email?: true
   createdAt?: true
   updatedAt?: true
+  externalId?: true
 }
 
 export type AuthAccountCountAggregateInputType = {
   id?: true
   userId?: true
   provider?: true
-  externalId?: true
   email?: true
   createdAt?: true
   updatedAt?: true
+  externalId?: true
   _all?: true
 }
 
@@ -163,10 +163,10 @@ export type AuthAccountGroupByOutputType = {
   id: string
   userId: string
   provider: $Enums.AuthProvider
-  externalId: string
   email: string | null
   createdAt: Date
   updatedAt: Date
+  externalId: string
   _count: AuthAccountCountAggregateOutputType | null
   _min: AuthAccountMinAggregateOutputType | null
   _max: AuthAccountMaxAggregateOutputType | null
@@ -194,10 +194,10 @@ export type AuthAccountWhereInput = {
   id?: Prisma.StringFilter<"AuthAccount"> | string
   userId?: Prisma.StringFilter<"AuthAccount"> | string
   provider?: Prisma.EnumAuthProviderFilter<"AuthAccount"> | $Enums.AuthProvider
-  externalId?: Prisma.StringFilter<"AuthAccount"> | string
   email?: Prisma.StringNullableFilter<"AuthAccount"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
+  externalId?: Prisma.StringFilter<"AuthAccount"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
@@ -205,10 +205,10 @@ export type AuthAccountOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   provider?: Prisma.SortOrder
-  externalId?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -220,10 +220,10 @@ export type AuthAccountWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AuthAccountWhereInput | Prisma.AuthAccountWhereInput[]
   userId?: Prisma.StringFilter<"AuthAccount"> | string
   provider?: Prisma.EnumAuthProviderFilter<"AuthAccount"> | $Enums.AuthProvider
-  externalId?: Prisma.StringFilter<"AuthAccount"> | string
   email?: Prisma.StringNullableFilter<"AuthAccount"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
+  externalId?: Prisma.StringFilter<"AuthAccount"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "provider_externalId">
 
@@ -231,10 +231,10 @@ export type AuthAccountOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   provider?: Prisma.SortOrder
-  externalId?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
   _count?: Prisma.AuthAccountCountOrderByAggregateInput
   _max?: Prisma.AuthAccountMaxOrderByAggregateInput
   _min?: Prisma.AuthAccountMinOrderByAggregateInput
@@ -247,19 +247,19 @@ export type AuthAccountScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"AuthAccount"> | string
   userId?: Prisma.StringWithAggregatesFilter<"AuthAccount"> | string
   provider?: Prisma.EnumAuthProviderWithAggregatesFilter<"AuthAccount"> | $Enums.AuthProvider
-  externalId?: Prisma.StringWithAggregatesFilter<"AuthAccount"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"AuthAccount"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AuthAccount"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AuthAccount"> | Date | string
+  externalId?: Prisma.StringWithAggregatesFilter<"AuthAccount"> | string
 }
 
 export type AuthAccountCreateInput = {
   id?: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
   user: Prisma.UserCreateNestedOneWithoutAuthAccountsInput
 }
 
@@ -267,19 +267,19 @@ export type AuthAccountUncheckedCreateInput = {
   id?: string
   userId: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
 }
 
 export type AuthAccountUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutAuthAccountsNestedInput
 }
 
@@ -287,39 +287,39 @@ export type AuthAccountUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuthAccountCreateManyInput = {
   id?: string
   userId: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
 }
 
 export type AuthAccountUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuthAccountUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuthAccountListRelationFilter = {
@@ -341,30 +341,30 @@ export type AuthAccountCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   provider?: Prisma.SortOrder
-  externalId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
 }
 
 export type AuthAccountMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   provider?: Prisma.SortOrder
-  externalId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
 }
 
 export type AuthAccountMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   provider?: Prisma.SortOrder
-  externalId?: Prisma.SortOrder
   email?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  externalId?: Prisma.SortOrder
 }
 
 export type AuthAccountCreateNestedManyWithoutUserInput = {
@@ -416,19 +416,19 @@ export type EnumAuthProviderFieldUpdateOperationsInput = {
 export type AuthAccountCreateWithoutUserInput = {
   id?: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
 }
 
 export type AuthAccountUncheckedCreateWithoutUserInput = {
   id?: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
 }
 
 export type AuthAccountCreateOrConnectWithoutUserInput = {
@@ -464,46 +464,46 @@ export type AuthAccountScalarWhereInput = {
   id?: Prisma.StringFilter<"AuthAccount"> | string
   userId?: Prisma.StringFilter<"AuthAccount"> | string
   provider?: Prisma.EnumAuthProviderFilter<"AuthAccount"> | $Enums.AuthProvider
-  externalId?: Prisma.StringFilter<"AuthAccount"> | string
   email?: Prisma.StringNullableFilter<"AuthAccount"> | string | null
   createdAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AuthAccount"> | Date | string
+  externalId?: Prisma.StringFilter<"AuthAccount"> | string
 }
 
 export type AuthAccountCreateManyUserInput = {
   id?: string
   provider: $Enums.AuthProvider
-  externalId: string
   email?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  externalId: string
 }
 
 export type AuthAccountUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuthAccountUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuthAccountUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   provider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
-  externalId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  externalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -512,10 +512,10 @@ export type AuthAccountSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   userId?: boolean
   provider?: boolean
-  externalId?: boolean
   email?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  externalId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["authAccount"]>
 
@@ -523,10 +523,10 @@ export type AuthAccountSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   userId?: boolean
   provider?: boolean
-  externalId?: boolean
   email?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  externalId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["authAccount"]>
 
@@ -534,10 +534,10 @@ export type AuthAccountSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   userId?: boolean
   provider?: boolean
-  externalId?: boolean
   email?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  externalId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["authAccount"]>
 
@@ -545,13 +545,13 @@ export type AuthAccountSelectScalar = {
   id?: boolean
   userId?: boolean
   provider?: boolean
-  externalId?: boolean
   email?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  externalId?: boolean
 }
 
-export type AuthAccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "provider" | "externalId" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["authAccount"]>
+export type AuthAccountOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "provider" | "email" | "createdAt" | "updatedAt" | "externalId", ExtArgs["result"]["authAccount"]>
 export type AuthAccountInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -571,10 +571,10 @@ export type $AuthAccountPayload<ExtArgs extends runtime.Types.Extensions.Interna
     id: string
     userId: string
     provider: $Enums.AuthProvider
-    externalId: string
     email: string | null
     createdAt: Date
     updatedAt: Date
+    externalId: string
   }, ExtArgs["result"]["authAccount"]>
   composites: {}
 }
@@ -1002,10 +1002,10 @@ export interface AuthAccountFieldRefs {
   readonly id: Prisma.FieldRef<"AuthAccount", 'String'>
   readonly userId: Prisma.FieldRef<"AuthAccount", 'String'>
   readonly provider: Prisma.FieldRef<"AuthAccount", 'AuthProvider'>
-  readonly externalId: Prisma.FieldRef<"AuthAccount", 'String'>
   readonly email: Prisma.FieldRef<"AuthAccount", 'String'>
   readonly createdAt: Prisma.FieldRef<"AuthAccount", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AuthAccount", 'DateTime'>
+  readonly externalId: Prisma.FieldRef<"AuthAccount", 'String'>
 }
     
 

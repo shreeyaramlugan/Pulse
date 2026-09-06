@@ -11,7 +11,7 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <h1>Welcome to NEXUS</h1>
+      <h1>Welcome to Pulse</h1>
 
       <p>
         Signed in as {user.email}
