@@ -51,3 +51,33 @@ export type User = Prisma.UserModel
  * 
  */
 export type AuthAccount = Prisma.AuthAccountModel
+/**
+ * Model Task
+ * 
+ */
+export type Task = Prisma.TaskModel
+/**
+ * Model TaskRecurrence
+ * 
+ */
+export type TaskRecurrence = Prisma.TaskRecurrenceModel
+/**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
+ * Model Reminder
+ * 
+ */
+export type Reminder = Prisma.ReminderModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model Goal
+ * 
+ */
+export type Goal = Prisma.GoalModel

@@ -212,7 +212,7 @@ export function SignupForm() {
       /*
        * 4. Redirect
        */
-if (credential.user.onboardingCompleted) {
+if (credential.user.onboardingComplete) {
   router.push("/dashboard");
 } else {
   router.push("/onboarding");
@@ -268,7 +268,7 @@ if (credential.user.onboardingCompleted) {
       /*
        * 4. Redirect
        */
-      if (credential.user.onboardingCompleted) {
+      if (credential.user.onboardingComplete) {
         router.push("/dashboard");
       } else {
         router.push("/onboarding");

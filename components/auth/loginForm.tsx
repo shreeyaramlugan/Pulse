@@ -44,33 +44,41 @@ export function LoginForm() {
    *      ↓
    * /dashboard
    */
-  async function finishLogin(
-    firebaseUser: import("firebase/auth").User
-  ) {
+async function finishLogin(
+  firebaseUser: import("firebase/auth").User
+) {
+  try {
     // 1. Get a fresh Firebase ID token
-    const idToken =
-      await firebaseUser.getIdToken(true);
+    const idToken = await firebaseUser.getIdToken(true);
 
-    // 2. Sync Firebase account with Prisma
+    // 2. Sync Firebase user → Prisma
     await syncUserWithDatabase(
       firebaseUser,
       idToken
     );
 
-    // 3. Create the secure server session
-    const sessionResponse =
-      await fetch("/api/auth/session", {
+    // 3. Create server authentication session
+    const sessionResponse = await fetch(
+      "/api/auth/session",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           idToken,
         }),
-      });
+      }
+    );
 
     const sessionData =
       await sessionResponse.json();
+
+    console.log(
+      "AUTH SESSION RESPONSE:",
+      sessionData
+    );
 
     if (!sessionResponse.ok) {
       throw new Error(
@@ -78,17 +86,28 @@ export function LoginForm() {
           "Unable to create login session."
       );
     }
-if (sessionData.user.onboardingCompleted) {
-  router.push("/dashboard");
-} else {
-  router.push("/onboarding");
-}
-    // 4. Firebase client auth + server session
-    // are now both established.
+
+    // 4. Make sure the server actually returned a user
+    if (!sessionData?.user) {
+      throw new Error(
+        "Login session was created, but no user was returned."
+      );
+    }
+
+    // 5. Send user to the correct place
+    if (
+      sessionData.user.onboardingComplete
+    ) {
+      router.push("/dashboard");
+    } else {
+      router.push("/onboarding");
+    }
 
     router.refresh();
+  } catch (error) {
+    throw error;
   }
-
+}
   async function handleEmailLogin(
     event: FormEvent<HTMLFormElement>
   ) {

@@ -47,7 +47,7 @@ export default async function OnboardingPage() {
    * Don't show onboarding again once completed.
    */
   if (
-    authAccount.user.onboardingCompleted
+    authAccount.user.onboardingComplete
   ) {
     redirect("/dashboard");
   }

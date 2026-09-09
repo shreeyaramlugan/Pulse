@@ -10,4 +10,10 @@
  */
 export type * from './models/User'
 export type * from './models/AuthAccount'
+export type * from './models/Task'
+export type * from './models/TaskRecurrence'
+export type * from './models/Project'
+export type * from './models/Reminder'
+export type * from './models/Notification'
+export type * from './models/Goal'
 export type * from './commonInputTypes'

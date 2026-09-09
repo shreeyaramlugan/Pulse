@@ -3,6 +3,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 import { adminAuth } from "@/firebase/admin";
+import { prisma } from "@/prisma";
 
 export async function getCurrentUser() {
   try {
@@ -20,7 +21,21 @@ export async function getCurrentUser() {
         true
       );
 
-    return decodedClaims;
+const user = await prisma.user.upsert({
+  where: {
+    email: decodedClaims.email!,
+  },
+  update: {
+    name: decodedClaims.name || "User",
+    avatarUrl: decodedClaims.picture || null,
+  },
+  create: {
+    email: decodedClaims.email!,
+    name: decodedClaims.name || "User",
+    avatarUrl: decodedClaims.picture || null,
+  },
+});
+    return user;
   } catch (error) {
     console.error("Auth verification failed:", error);
 

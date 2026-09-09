@@ -1,8 +1,8 @@
+import { cookies } from "next/headers";
+import { prisma } from "@/prisma";
 import { adminAuth } from "@/firebase/admin";
 
-export async function POST(
-  request: Request
-) {
+export async function POST(request: Request) {
   try {
     /*
      * Accept token from either:
@@ -51,17 +51,64 @@ export async function POST(
     }
 
     /*
-     * Verify the Firebase ID token first.
+     * Verify Firebase token
      */
-    await adminAuth.verifyIdToken(
-      idToken
-    );
+    const decodedToken =
+      await adminAuth.verifyIdToken(idToken);
 
     /*
-     * Create a Firebase server-side
-     * session cookie.
+     * Firebase UID
+     */
+    const firebaseUid = decodedToken.uid;
+
+    /*
+     * Find the corresponding AuthAccount
+     */
+    const authAccount =
+      await prisma.authAccount.findUnique({
+        where: {
+          provider_externalId: {
+            provider: "GOOGLE",
+            externalId: firebaseUid,
+          },
+        },
+        include: {
+          user: true,
+        },
+      });
+
+    /*
+     * If your email accounts are stored with
+     * provider EMAIL, the query above may not
+     * find them. Fall back to externalId.
+     */
+    const account =
+      authAccount ??
+      (await prisma.authAccount.findFirst({
+        where: {
+          externalId: firebaseUid,
+        },
+        include: {
+          user: true,
+        },
+      }));
+
+    if (!account) {
+      return Response.json(
+        {
+          error:
+            "Authentication account not found.",
+        },
+        { status: 404 }
+      );
+    }
+
+    const user = account.user;
+
+    /*
+     * Create Firebase server-side session cookie
      *
-     * 5 days.
+     * 5 days
      */
     const expiresIn =
       60 * 60 * 24 * 5 * 1000;
@@ -75,12 +122,38 @@ export async function POST(
       );
 
     /*
-     * Store the session in an HTTP-only cookie.
+     * Create response WITH user information
      */
     const response = Response.json({
       success: true,
+
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        avatarUrl: user.avatarUrl,
+
+        timezone: user.timezone,
+        weekStartsOn: user.weekStartsOn,
+
+        notificationPreference:
+          user.notificationPreference,
+
+        theme: user.theme,
+
+        onboardingComplete:
+          user.onboardingComplete,
+
+        currency: user.currency,
+        dateFormat: user.dateFormat,
+        timeFormat: user.timeFormat,
+        language: user.language,
+      },
     });
 
+    /*
+     * Store secure session cookie
+     */
     response.headers.append(
       "Set-Cookie",
       [
