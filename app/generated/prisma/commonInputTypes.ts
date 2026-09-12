@@ -355,6 +355,162 @@ export type EnumNotificationChannelWithAggregatesFilter<$PrismaModel = never> = 
   _max?: Prisma.NestedEnumNotificationChannelFilter<$PrismaModel>
 }
 
+export type EnumGoalPeriodFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPeriod | Prisma.EnumGoalPeriodFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel> | $Enums.GoalPeriod
+}
+
+export type EnumGoalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel> | $Enums.GoalStatus
+}
+
+export type EnumGoalPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel> | $Enums.GoalPriority
+}
+
+export type EnumGoalProgressTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalProgressType | Prisma.EnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel> | $Enums.GoalProgressType
+}
+
+export type EnumGoalMetricTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricType | Prisma.EnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel> | $Enums.GoalMetricType | null
+}
+
+export type EnumGoalMetricDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricDirection | Prisma.EnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel> | $Enums.GoalMetricDirection
+}
+
+export type DecimalNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
+export type EnumGoalPeriodWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPeriod | Prisma.EnumGoalPeriodFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPeriodWithAggregatesFilter<$PrismaModel> | $Enums.GoalPeriod
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel>
+}
+
+export type EnumGoalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel> | $Enums.GoalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+}
+
+export type EnumGoalPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel> | $Enums.GoalPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+}
+
+export type EnumGoalProgressTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalProgressType | Prisma.EnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalProgressTypeWithAggregatesFilter<$PrismaModel> | $Enums.GoalProgressType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel>
+}
+
+export type EnumGoalMetricTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricType | Prisma.EnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumGoalMetricTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.GoalMetricType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel>
+}
+
+export type EnumGoalMetricDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricDirection | Prisma.EnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalMetricDirectionWithAggregatesFilter<$PrismaModel> | $Enums.GoalMetricDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel>
+}
+
+export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+}
+
+export type DecimalFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalWithAggregatesFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _min?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -707,6 +863,162 @@ export type NestedEnumNotificationChannelWithAggregatesFilter<$PrismaModel = nev
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumNotificationChannelFilter<$PrismaModel>
   _max?: Prisma.NestedEnumNotificationChannelFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalPeriodFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPeriod | Prisma.EnumGoalPeriodFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel> | $Enums.GoalPeriod
+}
+
+export type NestedEnumGoalStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel> | $Enums.GoalStatus
+}
+
+export type NestedEnumGoalPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel> | $Enums.GoalPriority
+}
+
+export type NestedEnumGoalProgressTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalProgressType | Prisma.EnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel> | $Enums.GoalProgressType
+}
+
+export type NestedEnumGoalMetricTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricType | Prisma.EnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel> | $Enums.GoalMetricType | null
+}
+
+export type NestedEnumGoalMetricDirectionFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricDirection | Prisma.EnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel> | $Enums.GoalMetricDirection
+}
+
+export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+}
+
+export type NestedEnumGoalPeriodWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPeriod | Prisma.EnumGoalPeriodFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPeriod[] | Prisma.ListEnumGoalPeriodFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPeriodWithAggregatesFilter<$PrismaModel> | $Enums.GoalPeriod
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPeriodFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalStatus | Prisma.EnumGoalStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalStatus[] | Prisma.ListEnumGoalStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalStatusWithAggregatesFilter<$PrismaModel> | $Enums.GoalStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalPriority | Prisma.EnumGoalPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalPriority[] | Prisma.ListEnumGoalPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalPriorityWithAggregatesFilter<$PrismaModel> | $Enums.GoalPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalPriorityFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalProgressTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalProgressType | Prisma.EnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalProgressType[] | Prisma.ListEnumGoalProgressTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalProgressTypeWithAggregatesFilter<$PrismaModel> | $Enums.GoalProgressType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalProgressTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalMetricTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricType | Prisma.EnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.GoalMetricType[] | Prisma.ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumGoalMetricTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.GoalMetricType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalMetricTypeNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumGoalMetricDirectionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.GoalMetricDirection | Prisma.EnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  in?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.GoalMetricDirection[] | Prisma.ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumGoalMetricDirectionWithAggregatesFilter<$PrismaModel> | $Enums.GoalMetricDirection
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumGoalMetricDirectionFilter<$PrismaModel>
+}
+
+export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel> | null
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel> | null
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedDecimalNullableFilter<$PrismaModel>
+}
+
+export type NestedDecimalFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  in?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  notIn?: runtime.Decimal[] | runtime.DecimalJsLike[] | number[] | string[] | Prisma.ListDecimalFieldRefInput<$PrismaModel>
+  lt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  lte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gt?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  gte?: runtime.Decimal | runtime.DecimalJsLike | number | string | Prisma.DecimalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedDecimalWithAggregatesFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _avg?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _min?: Prisma.NestedDecimalFilter<$PrismaModel>
+  _max?: Prisma.NestedDecimalFilter<$PrismaModel>
 }
 
 

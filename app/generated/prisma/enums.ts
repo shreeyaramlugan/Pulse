@@ -126,3 +126,64 @@ export const NotificationChannel = {
 } as const
 
 export type NotificationChannel = (typeof NotificationChannel)[keyof typeof NotificationChannel]
+
+
+export const GoalPeriod = {
+  DAILY: 'DAILY',
+  WEEKLY: 'WEEKLY',
+  MONTHLY: 'MONTHLY',
+  QUARTERLY: 'QUARTERLY',
+  ANNUAL: 'ANNUAL'
+} as const
+
+export type GoalPeriod = (typeof GoalPeriod)[keyof typeof GoalPeriod]
+
+
+export const GoalStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  PAUSED: 'PAUSED',
+  CANCELLED: 'CANCELLED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type GoalStatus = (typeof GoalStatus)[keyof typeof GoalStatus]
+
+
+export const GoalPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+} as const
+
+export type GoalPriority = (typeof GoalPriority)[keyof typeof GoalPriority]
+
+
+export const GoalProgressType = {
+  MANUAL: 'MANUAL',
+  METRIC: 'METRIC',
+  SUBGOALS: 'SUBGOALS'
+} as const
+
+export type GoalProgressType = (typeof GoalProgressType)[keyof typeof GoalProgressType]
+
+
+export const GoalMetricType = {
+  NUMBER: 'NUMBER',
+  CURRENCY: 'CURRENCY',
+  PERCENTAGE: 'PERCENTAGE',
+  HOURS: 'HOURS',
+  MINUTES: 'MINUTES',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type GoalMetricType = (typeof GoalMetricType)[keyof typeof GoalMetricType]
+
+
+export const GoalMetricDirection = {
+  INCREASE: 'INCREASE',
+  DECREASE: 'DECREASE'
+} as const
+
+export type GoalMetricDirection = (typeof GoalMetricDirection)[keyof typeof GoalMetricDirection]

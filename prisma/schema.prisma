@@ -90,6 +90,49 @@ enum NotificationChannel {
   PUSH
 }
 
+enum GoalPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUAL
+}
+
+enum GoalStatus {
+  ACTIVE
+  COMPLETED
+  PAUSED
+  CANCELLED
+  ARCHIVED
+}
+
+enum GoalPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum GoalProgressType {
+  MANUAL
+  METRIC
+  SUBGOALS
+}
+
+enum GoalMetricType {
+  NUMBER
+  CURRENCY
+  PERCENTAGE
+  HOURS
+  MINUTES
+  CUSTOM
+}
+
+enum GoalMetricDirection {
+  INCREASE
+  DECREASE
+}
+
 model User {
   id        String  @id @default(cuid())
   email     String  @unique
@@ -181,23 +224,24 @@ model TaskRecurrence {
   id String @id @default(uuid())
 
   taskId String @unique
+  task   Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
 
   frequency RecurrenceFrequency
   interval  Int                 @default(1)
 
-  daysOfWeek Int[] // 0 = Sunday, 1 = Monday ... 6 = Saturday
+  daysOfWeek Int[]
 
   startDate DateTime
   endDate   DateTime?
 
   nextRunAt DateTime?
 
+  lastRunAt DateTime?
+
+  isActive Boolean @default(true)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
-
-  @@index([nextRunAt])
 }
 
 model Project {
@@ -299,19 +343,72 @@ model Goal {
 
   userId String
 
+  // Goal hierarchy
+  parentGoalId String?
+
   title       String
   description String?
 
+  // Time classification
+  period GoalPeriod @default(MONTHLY)
+
+  // Lifecycle
+  status   GoalStatus   @default(ACTIVE)
+  priority GoalPriority @default(MEDIUM)
+
+  // Progress
+  progressType GoalProgressType @default(MANUAL)
+
+  // Metric configuration
+  metricType      GoalMetricType?
+  metricName      String?
+  unit            String?
+  metricDirection GoalMetricDirection @default(INCREASE)
+
+  startValue   Decimal? @db.Decimal(14, 2)
+  currentValue Decimal? @db.Decimal(14, 2)
+  targetValue  Decimal? @db.Decimal(14, 2)
+
+  // Dates
+  startDate   DateTime?
   targetDate  DateTime?
   completedAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  parentGoal Goal? @relation("GoalHierarchy", fields: [parentGoalId], references: [id], onDelete: SetNull)
+
+  subGoals Goal[] @relation("GoalHierarchy")
 
   tasks Task[]
 
+  progressEntries GoalProgressEntry[]
+
   @@index([userId])
-  @@index([targetDate])
+  @@index([userId, period])
+  @@index([userId, status])
+  @@index([userId, targetDate])
+  @@index([parentGoalId])
+}
+
+model GoalProgressEntry {
+  id String @id @default(uuid())
+
+  goalId String
+
+  value Decimal @db.Decimal(14, 2)
+
+  note String?
+
+  recordedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  goal Goal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  @@index([goalId])
+  @@index([goalId, recordedAt])
 }

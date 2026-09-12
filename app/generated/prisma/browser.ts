@@ -57,3 +57,8 @@ export type Notification = Prisma.NotificationModel
  * 
  */
 export type Goal = Prisma.GoalModel
+/**
+ * Model GoalProgressEntry
+ * 
+ */
+export type GoalProgressEntry = Prisma.GoalProgressEntryModel

@@ -404,7 +404,8 @@ export const ModelName = {
   Project: 'Project',
   Reminder: 'Reminder',
   Notification: 'Notification',
-  Goal: 'Goal'
+  Goal: 'Goal',
+  GoalProgressEntry: 'GoalProgressEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -420,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "authAccount" | "task" | "taskRecurrence" | "project" | "reminder" | "notification" | "goal"
+    modelProps: "user" | "authAccount" | "task" | "taskRecurrence" | "project" | "reminder" | "notification" | "goal" | "goalProgressEntry"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1016,6 +1017,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GoalProgressEntry: {
+      payload: Prisma.$GoalProgressEntryPayload<ExtArgs>
+      fields: Prisma.GoalProgressEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoalProgressEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoalProgressEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.GoalProgressEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoalProgressEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        findMany: {
+          args: Prisma.GoalProgressEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        create: {
+          args: Prisma.GoalProgressEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        createMany: {
+          args: Prisma.GoalProgressEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoalProgressEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.GoalProgressEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        update: {
+          args: Prisma.GoalProgressEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.GoalProgressEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoalProgressEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoalProgressEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.GoalProgressEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalProgressEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.GoalProgressEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoalProgressEntry>
+        }
+        groupBy: {
+          args: Prisma.GoalProgressEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalProgressEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoalProgressEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalProgressEntryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1119,6 +1194,8 @@ export const TaskRecurrenceScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   nextRunAt: 'nextRunAt',
+  lastRunAt: 'lastRunAt',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1180,8 +1257,21 @@ export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[k
 export const GoalScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  parentGoalId: 'parentGoalId',
   title: 'title',
   description: 'description',
+  period: 'period',
+  status: 'status',
+  priority: 'priority',
+  progressType: 'progressType',
+  metricType: 'metricType',
+  metricName: 'metricName',
+  unit: 'unit',
+  metricDirection: 'metricDirection',
+  startValue: 'startValue',
+  currentValue: 'currentValue',
+  targetValue: 'targetValue',
+  startDate: 'startDate',
   targetDate: 'targetDate',
   completedAt: 'completedAt',
   createdAt: 'createdAt',
@@ -1189,6 +1279,18 @@ export const GoalScalarFieldEnum = {
 } as const
 
 export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const GoalProgressEntryScalarFieldEnum = {
+  id: 'id',
+  goalId: 'goalId',
+  value: 'value',
+  note: 'note',
+  recordedAt: 'recordedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GoalProgressEntryScalarFieldEnum = (typeof GoalProgressEntryScalarFieldEnum)[keyof typeof GoalProgressEntryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1397,6 +1499,104 @@ export type ListEnumNotificationChannelFieldRefInput<$PrismaModel> = FieldRefInp
 
 
 /**
+ * Reference to a field of type 'GoalPeriod'
+ */
+export type EnumGoalPeriodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPeriod'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalPeriod[]'
+ */
+export type ListEnumGoalPeriodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPeriod[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalStatus'
+ */
+export type EnumGoalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalStatus[]'
+ */
+export type ListEnumGoalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalPriority'
+ */
+export type EnumGoalPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPriority'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalPriority[]'
+ */
+export type ListEnumGoalPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalPriority[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalProgressType'
+ */
+export type EnumGoalProgressTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalProgressType'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalProgressType[]'
+ */
+export type ListEnumGoalProgressTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalProgressType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalMetricType'
+ */
+export type EnumGoalMetricTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalMetricType'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalMetricType[]'
+ */
+export type ListEnumGoalMetricTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalMetricType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalMetricDirection'
+ */
+export type EnumGoalMetricDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalMetricDirection'>
+    
+
+
+/**
+ * Reference to a field of type 'GoalMetricDirection[]'
+ */
+export type ListEnumGoalMetricDirectionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalMetricDirection[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1568,6 +1768,7 @@ export type GlobalOmitConfig = {
   reminder?: Prisma.ReminderOmit
   notification?: Prisma.NotificationOmit
   goal?: Prisma.GoalOmit
+  goalProgressEntry?: Prisma.GoalProgressEntryOmit
 }
 
 /* Types for Logging */

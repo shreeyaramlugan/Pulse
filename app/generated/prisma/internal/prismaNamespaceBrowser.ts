@@ -58,7 +58,8 @@ export const ModelName = {
   Project: 'Project',
   Reminder: 'Reminder',
   Notification: 'Notification',
-  Goal: 'Goal'
+  Goal: 'Goal',
+  GoalProgressEntry: 'GoalProgressEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -141,6 +142,8 @@ export const TaskRecurrenceScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   nextRunAt: 'nextRunAt',
+  lastRunAt: 'lastRunAt',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -202,8 +205,21 @@ export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[k
 export const GoalScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  parentGoalId: 'parentGoalId',
   title: 'title',
   description: 'description',
+  period: 'period',
+  status: 'status',
+  priority: 'priority',
+  progressType: 'progressType',
+  metricType: 'metricType',
+  metricName: 'metricName',
+  unit: 'unit',
+  metricDirection: 'metricDirection',
+  startValue: 'startValue',
+  currentValue: 'currentValue',
+  targetValue: 'targetValue',
+  startDate: 'startDate',
   targetDate: 'targetDate',
   completedAt: 'completedAt',
   createdAt: 'createdAt',
@@ -211,6 +227,18 @@ export const GoalScalarFieldEnum = {
 } as const
 
 export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const GoalProgressEntryScalarFieldEnum = {
+  id: 'id',
+  goalId: 'goalId',
+  value: 'value',
+  note: 'note',
+  recordedAt: 'recordedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type GoalProgressEntryScalarFieldEnum = (typeof GoalProgressEntryScalarFieldEnum)[keyof typeof GoalProgressEntryScalarFieldEnum]
 
 
 export const SortOrder = {

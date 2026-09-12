@@ -44,6 +44,8 @@ export type TaskRecurrenceMinAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   nextRunAt: Date | null
+  lastRunAt: Date | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +58,8 @@ export type TaskRecurrenceMaxAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   nextRunAt: Date | null
+  lastRunAt: Date | null
+  isActive: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -69,6 +73,8 @@ export type TaskRecurrenceCountAggregateOutputType = {
   startDate: number
   endDate: number
   nextRunAt: number
+  lastRunAt: number
+  isActive: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -93,6 +99,8 @@ export type TaskRecurrenceMinAggregateInputType = {
   startDate?: true
   endDate?: true
   nextRunAt?: true
+  lastRunAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -105,6 +113,8 @@ export type TaskRecurrenceMaxAggregateInputType = {
   startDate?: true
   endDate?: true
   nextRunAt?: true
+  lastRunAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -118,6 +128,8 @@ export type TaskRecurrenceCountAggregateInputType = {
   startDate?: true
   endDate?: true
   nextRunAt?: true
+  lastRunAt?: true
+  isActive?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -218,6 +230,8 @@ export type TaskRecurrenceGroupByOutputType = {
   startDate: Date
   endDate: Date | null
   nextRunAt: Date | null
+  lastRunAt: Date | null
+  isActive: boolean
   createdAt: Date
   updatedAt: Date
   _count: TaskRecurrenceCountAggregateOutputType | null
@@ -254,6 +268,8 @@ export type TaskRecurrenceWhereInput = {
   startDate?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   endDate?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
   nextRunAt?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
+  lastRunAt?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
+  isActive?: Prisma.BoolFilter<"TaskRecurrence"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   task?: Prisma.XOR<Prisma.TaskScalarRelationFilter, Prisma.TaskWhereInput>
@@ -268,6 +284,8 @@ export type TaskRecurrenceOrderByWithRelationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   nextRunAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastRunAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   task?: Prisma.TaskOrderByWithRelationInput
@@ -285,6 +303,8 @@ export type TaskRecurrenceWhereUniqueInput = Prisma.AtLeast<{
   startDate?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   endDate?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
   nextRunAt?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
+  lastRunAt?: Prisma.DateTimeNullableFilter<"TaskRecurrence"> | Date | string | null
+  isActive?: Prisma.BoolFilter<"TaskRecurrence"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TaskRecurrence"> | Date | string
   task?: Prisma.XOR<Prisma.TaskScalarRelationFilter, Prisma.TaskWhereInput>
@@ -299,6 +319,8 @@ export type TaskRecurrenceOrderByWithAggregationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   nextRunAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastRunAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TaskRecurrenceCountOrderByAggregateInput
@@ -320,6 +342,8 @@ export type TaskRecurrenceScalarWhereWithAggregatesInput = {
   startDate?: Prisma.DateTimeWithAggregatesFilter<"TaskRecurrence"> | Date | string
   endDate?: Prisma.DateTimeNullableWithAggregatesFilter<"TaskRecurrence"> | Date | string | null
   nextRunAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TaskRecurrence"> | Date | string | null
+  lastRunAt?: Prisma.DateTimeNullableWithAggregatesFilter<"TaskRecurrence"> | Date | string | null
+  isActive?: Prisma.BoolWithAggregatesFilter<"TaskRecurrence"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TaskRecurrence"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TaskRecurrence"> | Date | string
 }
@@ -332,6 +356,8 @@ export type TaskRecurrenceCreateInput = {
   startDate: Date | string
   endDate?: Date | string | null
   nextRunAt?: Date | string | null
+  lastRunAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   task: Prisma.TaskCreateNestedOneWithoutRecurrenceInput
@@ -346,6 +372,8 @@ export type TaskRecurrenceUncheckedCreateInput = {
   startDate: Date | string
   endDate?: Date | string | null
   nextRunAt?: Date | string | null
+  lastRunAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -358,6 +386,8 @@ export type TaskRecurrenceUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task?: Prisma.TaskUpdateOneRequiredWithoutRecurrenceNestedInput
@@ -372,6 +402,8 @@ export type TaskRecurrenceUncheckedUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -385,6 +417,8 @@ export type TaskRecurrenceCreateManyInput = {
   startDate: Date | string
   endDate?: Date | string | null
   nextRunAt?: Date | string | null
+  lastRunAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -397,6 +431,8 @@ export type TaskRecurrenceUpdateManyMutationInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -410,6 +446,8 @@ export type TaskRecurrenceUncheckedUpdateManyInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -436,6 +474,8 @@ export type TaskRecurrenceCountOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   nextRunAt?: Prisma.SortOrder
+  lastRunAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -453,6 +493,8 @@ export type TaskRecurrenceMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   nextRunAt?: Prisma.SortOrder
+  lastRunAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -465,6 +507,8 @@ export type TaskRecurrenceMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   nextRunAt?: Prisma.SortOrder
+  lastRunAt?: Prisma.SortOrder
+  isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -527,6 +571,8 @@ export type TaskRecurrenceCreateWithoutTaskInput = {
   startDate: Date | string
   endDate?: Date | string | null
   nextRunAt?: Date | string | null
+  lastRunAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -539,6 +585,8 @@ export type TaskRecurrenceUncheckedCreateWithoutTaskInput = {
   startDate: Date | string
   endDate?: Date | string | null
   nextRunAt?: Date | string | null
+  lastRunAt?: Date | string | null
+  isActive?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -567,6 +615,8 @@ export type TaskRecurrenceUpdateWithoutTaskInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -579,6 +629,8 @@ export type TaskRecurrenceUncheckedUpdateWithoutTaskInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nextRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastRunAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -594,6 +646,8 @@ export type TaskRecurrenceSelect<ExtArgs extends runtime.Types.Extensions.Intern
   startDate?: boolean
   endDate?: boolean
   nextRunAt?: boolean
+  lastRunAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   task?: boolean | Prisma.TaskDefaultArgs<ExtArgs>
@@ -608,6 +662,8 @@ export type TaskRecurrenceSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   startDate?: boolean
   endDate?: boolean
   nextRunAt?: boolean
+  lastRunAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   task?: boolean | Prisma.TaskDefaultArgs<ExtArgs>
@@ -622,6 +678,8 @@ export type TaskRecurrenceSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   startDate?: boolean
   endDate?: boolean
   nextRunAt?: boolean
+  lastRunAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   task?: boolean | Prisma.TaskDefaultArgs<ExtArgs>
@@ -636,11 +694,13 @@ export type TaskRecurrenceSelectScalar = {
   startDate?: boolean
   endDate?: boolean
   nextRunAt?: boolean
+  lastRunAt?: boolean
+  isActive?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TaskRecurrenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskId" | "frequency" | "interval" | "daysOfWeek" | "startDate" | "endDate" | "nextRunAt" | "createdAt" | "updatedAt", ExtArgs["result"]["taskRecurrence"]>
+export type TaskRecurrenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "taskId" | "frequency" | "interval" | "daysOfWeek" | "startDate" | "endDate" | "nextRunAt" | "lastRunAt" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["taskRecurrence"]>
 export type TaskRecurrenceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task?: boolean | Prisma.TaskDefaultArgs<ExtArgs>
 }
@@ -665,6 +725,8 @@ export type $TaskRecurrencePayload<ExtArgs extends runtime.Types.Extensions.Inte
     startDate: Date
     endDate: Date | null
     nextRunAt: Date | null
+    lastRunAt: Date | null
+    isActive: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["taskRecurrence"]>
@@ -1099,6 +1161,8 @@ export interface TaskRecurrenceFieldRefs {
   readonly startDate: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
   readonly nextRunAt: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
+  readonly lastRunAt: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
+  readonly isActive: Prisma.FieldRef<"TaskRecurrence", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TaskRecurrence", 'DateTime'>
 }
