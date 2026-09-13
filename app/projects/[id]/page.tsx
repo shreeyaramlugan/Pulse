@@ -215,60 +215,53 @@ export default function ProjectDetailPage() {
    * Toggle step
    * -------------------------------------------------------
    */
+async function toggleStep(
+  stepId: string,
+  currentStatus: string
+) {
+  if (!project) return;
 
-  async function toggleStep(
-    step: ProjectStep
-  ) {
-    if (!project) return;
+  try {
+    setError(null);
 
-    try {
-      const newStatus =
-        step.status === "COMPLETED"
-          ? "TODO"
-          : "COMPLETED";
+    const newStatus =
+      currentStatus === "COMPLETED"
+        ? "TODO"
+        : "COMPLETED";
 
-      const response =
-        await fetch(
-          `/api/projects/${project.id}/steps`,
-          {
-            method: "PATCH",
-
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-
-            credentials: "include",
-
-            body: JSON.stringify({
-              stepId: step.id,
-              status: newStatus,
-            }),
-          }
-        );
-
-      const data =
-        await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.message ||
-            "Failed to update step."
-        );
+    const response = await fetch(
+      `/api/projects/${project.id}/steps?stepId=${encodeURIComponent(stepId)}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          status: newStatus,
+        }),
       }
+    );
 
-      await fetchProject();
-    } catch (err) {
-      console.error(err);
+    const data = await response.json();
 
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Failed to update step."
+    if (!response.ok) {
+      throw new Error(
+        data.message || "Failed to update step."
       );
     }
-  }
 
+    await fetchProject();
+  } catch (err) {
+    console.error(err);
+
+    setError(
+      err instanceof Error
+        ? err.message
+        : "Failed to update step."
+    );
+  }
+}
   /*
    * -------------------------------------------------------
    * Delete step
@@ -632,29 +625,21 @@ export default function ProjectDetailPage() {
                   >
 
                     <button
-                      type="button"
-                      onClick={() =>
-                        toggleStep(step)
-                      }
-                      className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs ${
-                        step.status ===
-                        "COMPLETED"
-                          ? "bg-current text-white"
-                          : ""
-                      }`}
-                      aria-label={
-                        step.status ===
-                        "COMPLETED"
-                          ? "Mark incomplete"
-                          : "Mark complete"
-                      }
-                    >
-                      {step.status ===
-                      "COMPLETED"
-                        ? "✓"
-                        : ""}
-                    </button>
-
+  type="button"
+  onClick={() =>
+    toggleStep(
+      step.id,
+      step.status
+    )
+  }
+  className={`flex h-5 w-5 items-center justify-center rounded-full border ${
+    step.status === "COMPLETED"
+      ? "opacity-100"
+      : "opacity-50"
+  }`}
+>
+  {step.status === "COMPLETED" && "✓"}
+</button>
                     <div className="min-w-0 flex-1">
 
                       <p
