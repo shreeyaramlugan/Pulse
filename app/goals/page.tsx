@@ -13,101 +13,8 @@ import GoalFilters from "@/components/goals/goalFilters";
 import GoalList from "@/components/goals/goalList";
 import GoalModal from "@/components/goals/goalModal";
 
-export type Goal = {
-id: string;
-title: string;
-description: string | null;
-
-parentGoalId: string | null;
-
-period:
-| "DAILY"
-| "WEEKLY"
-| "MONTHLY"
-| "QUARTERLY"
-| "ANNUAL";
-
-status:
-| "ACTIVE"
-| "COMPLETED"
-| "PAUSED"
-| "CANCELLED"
-| "ARCHIVED";
-
-priority:
-| "LOW"
-| "MEDIUM"
-| "HIGH"
-| "URGENT";
-
-progressType:
-| "MANUAL"
-| "METRIC"
-| "SUBGOALS";
-
-metricType:
-| "NUMBER"
-| "CURRENCY"
-| "PERCENTAGE"
-| "HOURS"
-| "MINUTES"
-| "CUSTOM"
-| null;
-
-metricName: string | null;
-unit: string | null;
-
-metricDirection:
-| "INCREASE"
-| "DECREASE";
-
-startValue: number | string | null;
-currentValue: number | string | null;
-targetValue: number | string | null;
-
-startDate: string | null;
-targetDate: string | null;
-completedAt: string | null;
-
-createdAt: string;
-updatedAt: string;
-
-parentGoal?: {
-id: string;
-title: string;
-status: string;
-} | null;
-subGoals: {
-  id: string;
-  title: string;
-  description: string | null;
-  status:
-    | "ACTIVE"
-    | "COMPLETED"
-    | "PAUSED"
-    | "CANCELLED"
-    | "ARCHIVED";
-  priority:
-    | "LOW"
-    | "MEDIUM"
-    | "HIGH"
-    | "URGENT";
-  targetDate: string | null;
-  parentGoalId: string | null;
-}[];
-_count: {
-subGoals: number;
-tasks: number;
-progressEntries: number;
-};
-};
-
-export type GoalFilters = {
-status: string;
-priority: string;
-period: string;
-progressType: string;
-};
+export type { Goal, GoalFilters as GoalFilterState } from "@/components/goals/goalTypes";
+import type { Goal, SubGoal, GoalFilters as GoalFilterState } from "@/components/goals/goalTypes";
 
 export default function GoalsPage() {
 const [goals, setGoals] = useState<Goal[]>(
@@ -118,7 +25,7 @@ const [search, setSearch] =
 useState("");
 
 const [filters, setFilters] =
-useState<GoalFilters>({
+useState<GoalFilterState>({
 status: "",
 priority: "",
 period: "",
@@ -290,7 +197,7 @@ return () =>
 
 
 function updateFilter(
-key: keyof GoalFilters,
+key: keyof GoalFilterState,
 value: string
 ) {
 setFilters(
@@ -353,9 +260,11 @@ function openAddSubGoalModal(goal: Goal) {
   setModalOpen(true);
 }
 function openEditSubGoalModal(
-  subGoal: Goal
+  subGoal: SubGoal
 ) {
-  setEditingGoal(subGoal);
+  // The modal only reads fields present on the sub-goal summary; the
+  // remaining Goal fields are loaded/defaulted by the modal itself.
+  setEditingGoal(subGoal as unknown as Goal);
   setParentGoal(null);
   setModalOpen(true);
 }
@@ -501,7 +410,7 @@ setError(null);
 
 }
 async function toggleSubGoal(
-  subGoal: Goal
+  subGoal: SubGoal
 ) {
   try {
     setError(null);

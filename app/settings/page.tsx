@@ -31,23 +31,8 @@ export default async function SettingsPage({
   searchParams,
 }: SettingsPageProps) {
   /**
-   * Get the authenticated Firebase user.
-   *
-   * IMPORTANT:
-   * authUser.id is not necessarily the Prisma User.id.
-   *
-   * Firebase uses `uid`.
-   * Prisma User uses its own `cuid()`.
-   *
-   * We therefore resolve:
-   *
-   * Firebase UID
-   *      ↓
-   * AuthAccount.externalId
-   *      ↓
-   * AuthAccount.userId
-   *      ↓
-   * Prisma User
+   * getCurrentUser() verifies the Firebase session cookie and returns
+   * the matching Prisma User, so `authUser.id` IS the Prisma User.id.
    */
   const authUser = await getCurrentUser();
 
@@ -55,62 +40,14 @@ export default async function SettingsPage({
     redirect("/login");
   }
 
-  /**
-   * Firebase Admin decoded users normally expose
-   * the Firebase identifier as `uid`.
-   *
-   * If your getCurrentUser() helper returns `user.uid`,
-   * this is the value we need.
-   */
-  const firebaseUid = authUser.uid;
+  const user = await prisma.user.findUnique({
+    where: { id: authUser.id },
+    include: { authAccounts: true },
+  });
 
-  if (!firebaseUid) {
-    console.error(
-      "Authenticated user is missing Firebase UID."
-    );
-
+  if (!user) {
     redirect("/login");
   }
-
-  /**
-   * Find the Prisma user through AuthAccount.
-   *
-   * This prevents us from incorrectly assuming that
-   * Firebase UID === Prisma User.id.
-   */
-  const authAccount =
-    await prisma.authAccount.findFirst({
-      where: {
-        externalId: firebaseUid,
-      },
-      include: {
-        user: {
-          include: {
-            authAccounts: true,
-          },
-        },
-      },
-    });
-
-  if (!authAccount?.user) {
-    console.error(
-      "Authenticated Firebase user does not have a linked Prisma account.",
-      {
-        firebaseUid,
-      }
-    );
-
-    /**
-     * The user is authenticated with Firebase,
-     * but their application account does not exist.
-     *
-     * Send them through login/signup rather than
-     * attempting to query User with an undefined ID.
-     */
-    redirect("/login");
-  }
-
-  const user = authAccount.user;
 
   const params = await searchParams;
 
@@ -144,7 +81,7 @@ export default async function SettingsPage({
         {/* Header */}
         <div className="mb-10">
           <p className="text-sm font-medium text-primary">
-            NEXUS
+            PULSE
           </p>
 
           <h1 className="mt-1 text-3xl font-bold tracking-tight text-foreground">
@@ -152,7 +89,7 @@ export default async function SettingsPage({
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-            Manage your account, workspace and NEXUS
+            Manage your account, workspace and PULSE
             preferences.
           </p>
         </div>

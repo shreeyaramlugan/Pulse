@@ -1,6 +1,6 @@
 "use client";
 
-import { GoalFilters as GoalFilterState } from "./goalPage";
+import { GoalFilters as GoalFilterState } from "./goalTypes";
 
 type Props = {
   filters: GoalFilterState;

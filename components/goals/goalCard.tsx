@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Goal } from "./goalPage";
+import type { Goal, SubGoal } from "./goalTypes";
 
 type Props = {
   goal: Goal;
@@ -11,8 +11,8 @@ type Props = {
   onEdit: (goal: Goal) => void;
 
   onAddSubGoal: (goal: Goal) => void;
-  onToggleSubGoal: (goal: Goal) => void;
-  onEditSubGoal: (goal: Goal) => void;
+  onToggleSubGoal: (subGoal: SubGoal) => void;
+  onEditSubGoal: (subGoal: SubGoal) => void;
 };
 
 

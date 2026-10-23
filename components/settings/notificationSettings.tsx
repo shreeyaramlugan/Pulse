@@ -109,7 +109,7 @@ export function NotificationSettings({
         </h2>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          Choose how much NEXUS should notify you.
+          Choose how much PULSE should notify you.
         </p>
       </div>
 

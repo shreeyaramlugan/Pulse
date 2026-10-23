@@ -16,10 +16,6 @@ export default async function DashboardPage() {
       <p>
         Signed in as {user.email}
       </p>
-
-      <p>
-        Firebase UID: {user.uid}
-      </p>
     </main>
   );
 }

@@ -539,22 +539,20 @@ export default function ProjectsPage() {
         {view === "KANBAN" && (
           <ProjectKanban
             projects={projects}
-            loading={loading}
             onToggle={toggleProject}
             onDelete={deleteProject}
             onEdit={openEditModal}
-            onView={viewProject}
+            onOpen={viewProject}
           />
         )}
 
         {view === "ASANA" && (
           <ProjectAsana
             projects={projects}
-            loading={loading}
             onToggle={toggleProject}
             onDelete={deleteProject}
             onEdit={openEditModal}
-            onView={viewProject}
+            onOpen={viewProject}
           />
         )}
 

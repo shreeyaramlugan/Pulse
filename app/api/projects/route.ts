@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import {
   ProjectPriority,
   ProjectStatus,
-  Prisma,
 } from "@/app/generated/prisma/enums";
+import { Prisma } from "@/app/generated/prisma/client";
 import { prisma } from "@/prisma";
 import { getCurrentUser } from "@/lib/auth";
 export const dynamic = "force-dynamic";
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
       100
     );
 
-    const where: prisma.ProjectWhereInput = {
+    const where: Prisma.ProjectWhereInput = {
       userId: user.id,
     };
 

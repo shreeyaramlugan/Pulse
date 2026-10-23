@@ -1,0 +1,1089 @@
+diff --git a/app/api/projects/[id]/route.ts b/app/api/projects/[id]/route.ts
+index 7c08e9f..43718f7 100644
+--- a/app/api/projects/[id]/route.ts
++++ b/app/api/projects/[id]/route.ts
+@@ -6,10 +6,10 @@ import {
+ } from "next/server";
+ 
+ import {
+-  Prisma,
+   ProjectPriority,
+   ProjectStatus,
+ } from "@/app/generated/prisma/enums";
++import { Prisma } from "@/app/generated/prisma/client";
+ 
+ import { prisma } from "@/prisma";
+ import { getCurrentUser } from "@/lib/auth";
+diff --git a/app/api/projects/[id]/steps/route.ts b/app/api/projects/[id]/steps/route.ts
+index 700069b..14fab19 100644
+--- a/app/api/projects/[id]/steps/route.ts
++++ b/app/api/projects/[id]/steps/route.ts
+@@ -6,10 +6,10 @@ import {
+ } from "next/server";
+ 
+ import {
+-  Prisma,
+   TaskPriority,
+   TaskStatus,
+ } from "@/app/generated/prisma/enums";
++import { Prisma } from "@/app/generated/prisma/client";
+ 
+ import { prisma } from "@/prisma";
+ import { getCurrentUser } from "@/lib/auth";
+diff --git a/app/api/projects/route.ts b/app/api/projects/route.ts
+index 6d991f8..bf3e795 100644
+--- a/app/api/projects/route.ts
++++ b/app/api/projects/route.ts
+@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
+ import {
+   ProjectPriority,
+   ProjectStatus,
+-  Prisma,
+ } from "@/app/generated/prisma/enums";
++import { Prisma } from "@/app/generated/prisma/client";
+ import { prisma } from "@/prisma";
+ import { getCurrentUser } from "@/lib/auth";
+ export const dynamic = "force-dynamic";
+@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
+       100
+     );
+ 
+-    const where: prisma.ProjectWhereInput = {
++    const where: Prisma.ProjectWhereInput = {
+       userId: user.id,
+     };
+ 
+diff --git a/app/dashboard/page.tsx b/app/dashboard/page.tsx
+index ee47c41..2dd5542 100644
+--- a/app/dashboard/page.tsx
++++ b/app/dashboard/page.tsx
+@@ -16,10 +16,6 @@ export default async function DashboardPage() {
+       <p>
+         Signed in as {user.email}
+       </p>
+-
+-      <p>
+-        Firebase UID: {user.uid}
+-      </p>
+     </main>
+   );
+ }
+diff --git a/app/goals/page.tsx b/app/goals/page.tsx
+index ca28bdf..f021ff0 100644
+--- a/app/goals/page.tsx
++++ b/app/goals/page.tsx
+@@ -13,101 +13,8 @@ import GoalFilters from "@/components/goals/goalFilters";
+ import GoalList from "@/components/goals/goalList";
+ import GoalModal from "@/components/goals/goalModal";
+ 
+-export type Goal = {
+-id: string;
+-title: string;
+-description: string | null;
+-
+-parentGoalId: string | null;
+-
+-period:
+-| "DAILY"
+-| "WEEKLY"
+-| "MONTHLY"
+-| "QUARTERLY"
+-| "ANNUAL";
+-
+-status:
+-| "ACTIVE"
+-| "COMPLETED"
+-| "PAUSED"
+-| "CANCELLED"
+-| "ARCHIVED";
+-
+-priority:
+-| "LOW"
+-| "MEDIUM"
+-| "HIGH"
+-| "URGENT";
+-
+-progressType:
+-| "MANUAL"
+-| "METRIC"
+-| "SUBGOALS";
+-
+-metricType:
+-| "NUMBER"
+-| "CURRENCY"
+-| "PERCENTAGE"
+-| "HOURS"
+-| "MINUTES"
+-| "CUSTOM"
+-| null;
+-
+-metricName: string | null;
+-unit: string | null;
+-
+-metricDirection:
+-| "INCREASE"
+-| "DECREASE";
+-
+-startValue: number | string | null;
+-currentValue: number | string | null;
+-targetValue: number | string | null;
+-
+-startDate: string | null;
+-targetDate: string | null;
+-completedAt: string | null;
+-
+-createdAt: string;
+-updatedAt: string;
+-
+-parentGoal?: {
+-id: string;
+-title: string;
+-status: string;
+-} | null;
+-subGoals: {
+-  id: string;
+-  title: string;
+-  description: string | null;
+-  status:
+-    | "ACTIVE"
+-    | "COMPLETED"
+-    | "PAUSED"
+-    | "CANCELLED"
+-    | "ARCHIVED";
+-  priority:
+-    | "LOW"
+-    | "MEDIUM"
+-    | "HIGH"
+-    | "URGENT";
+-  targetDate: string | null;
+-  parentGoalId: string | null;
+-}[];
+-_count: {
+-subGoals: number;
+-tasks: number;
+-progressEntries: number;
+-};
+-};
+-
+-export type GoalFilters = {
+-status: string;
+-priority: string;
+-period: string;
+-progressType: string;
+-};
++export type { Goal, GoalFilters as GoalFilterState } from "@/components/goals/goalTypes";
++import type { Goal, SubGoal, GoalFilters as GoalFilterState } from "@/components/goals/goalTypes";
+ 
+ export default function GoalsPage() {
+ const [goals, setGoals] = useState<Goal[]>(
+@@ -118,7 +25,7 @@ const [search, setSearch] =
+ useState("");
+ 
+ const [filters, setFilters] =
+-useState<GoalFilters>({
++useState<GoalFilterState>({
+ status: "",
+ priority: "",
+ period: "",
+@@ -290,7 +197,7 @@ return () =>
+ 
+ 
+ function updateFilter(
+-key: keyof GoalFilters,
++key: keyof GoalFilterState,
+ value: string
+ ) {
+ setFilters(
+@@ -353,9 +260,11 @@ function openAddSubGoalModal(goal: Goal) {
+   setModalOpen(true);
+ }
+ function openEditSubGoalModal(
+-  subGoal: Goal
++  subGoal: SubGoal
+ ) {
+-  setEditingGoal(subGoal);
++  // The modal only reads fields present on the sub-goal summary; the
++  // remaining Goal fields are loaded/defaulted by the modal itself.
++  setEditingGoal(subGoal as unknown as Goal);
+   setParentGoal(null);
+   setModalOpen(true);
+ }
+@@ -501,7 +410,7 @@ setError(null);
+ 
+ }
+ async function toggleSubGoal(
+-  subGoal: Goal
++  subGoal: SubGoal
+ ) {
+   try {
+     setError(null);
+diff --git a/app/projects/[id]/page.tsx b/app/projects/[id]/page.tsx
+index 535b03a..861f716 100644
+--- a/app/projects/[id]/page.tsx
++++ b/app/projects/[id]/page.tsx
+@@ -714,8 +714,7 @@ async function toggleStep(
+       {editOpen && (
+         <ProjectEdit
+           project={project}
+-          open={editOpen}
+-          onClose={() =>
++          onCancel={() =>
+             setEditOpen(false)
+           }
+           onUpdated={() => {
+diff --git a/app/projects/page.tsx b/app/projects/page.tsx
+index 65adec5..417b2a9 100644
+--- a/app/projects/page.tsx
++++ b/app/projects/page.tsx
+@@ -539,22 +539,20 @@ export default function ProjectsPage() {
+         {view === "KANBAN" && (
+           <ProjectKanban
+             projects={projects}
+-            loading={loading}
+             onToggle={toggleProject}
+             onDelete={deleteProject}
+             onEdit={openEditModal}
+-            onView={viewProject}
++            onOpen={viewProject}
+           />
+         )}
+ 
+         {view === "ASANA" && (
+           <ProjectAsana
+             projects={projects}
+-            loading={loading}
+             onToggle={toggleProject}
+             onDelete={deleteProject}
+             onEdit={openEditModal}
+-            onView={viewProject}
++            onOpen={viewProject}
+           />
+         )}
+ 
+diff --git a/app/settings/page.tsx b/app/settings/page.tsx
+index 118e625..c2d44da 100644
+--- a/app/settings/page.tsx
++++ b/app/settings/page.tsx
+@@ -31,23 +31,8 @@ export default async function SettingsPage({
+   searchParams,
+ }: SettingsPageProps) {
+   /**
+-   * Get the authenticated Firebase user.
+-   *
+-   * IMPORTANT:
+-   * authUser.id is not necessarily the Prisma User.id.
+-   *
+-   * Firebase uses `uid`.
+-   * Prisma User uses its own `cuid()`.
+-   *
+-   * We therefore resolve:
+-   *
+-   * Firebase UID
+-   *      ↓
+-   * AuthAccount.externalId
+-   *      ↓
+-   * AuthAccount.userId
+-   *      ↓
+-   * Prisma User
++   * getCurrentUser() verifies the Firebase session cookie and returns
++   * the matching Prisma User, so `authUser.id` IS the Prisma User.id.
+    */
+   const authUser = await getCurrentUser();
+ 
+@@ -55,63 +40,15 @@ export default async function SettingsPage({
+     redirect("/login");
+   }
+ 
+-  /**
+-   * Firebase Admin decoded users normally expose
+-   * the Firebase identifier as `uid`.
+-   *
+-   * If your getCurrentUser() helper returns `user.uid`,
+-   * this is the value we need.
+-   */
+-  const firebaseUid = authUser.uid;
+-
+-  if (!firebaseUid) {
+-    console.error(
+-      "Authenticated user is missing Firebase UID."
+-    );
++  const user = await prisma.user.findUnique({
++    where: { id: authUser.id },
++    include: { authAccounts: true },
++  });
+ 
++  if (!user) {
+     redirect("/login");
+   }
+ 
+-  /**
+-   * Find the Prisma user through AuthAccount.
+-   *
+-   * This prevents us from incorrectly assuming that
+-   * Firebase UID === Prisma User.id.
+-   */
+-  const authAccount =
+-    await prisma.authAccount.findFirst({
+-      where: {
+-        externalId: firebaseUid,
+-      },
+-      include: {
+-        user: {
+-          include: {
+-            authAccounts: true,
+-          },
+-        },
+-      },
+-    });
+-
+-  if (!authAccount?.user) {
+-    console.error(
+-      "Authenticated Firebase user does not have a linked Prisma account.",
+-      {
+-        firebaseUid,
+-      }
+-    );
+-
+-    /**
+-     * The user is authenticated with Firebase,
+-     * but their application account does not exist.
+-     *
+-     * Send them through login/signup rather than
+-     * attempting to query User with an undefined ID.
+-     */
+-    redirect("/login");
+-  }
+-
+-  const user = authAccount.user;
+-
+   const params = await searchParams;
+ 
+   const requestedTab = params.tab || "profile";
+diff --git a/components/auth/loginForm.tsx b/components/auth/loginForm.tsx
+index 9c97191..906f5bb 100644
+--- a/components/auth/loginForm.tsx
++++ b/components/auth/loginForm.tsx
+@@ -45,69 +45,29 @@ export function LoginForm() {
+    * /dashboard
+    */
+ async function finishLogin(
+-  firebaseUser: import("firebase/auth").User
+-) {
+-  try {
+-    // 1. Get a fresh Firebase ID token
+-    const idToken = await firebaseUser.getIdToken(true);
+-
+-    // 2. Sync Firebase user → Prisma
+-    await syncUserWithDatabase(
+-      firebaseUser,
+-      idToken
+-    );
+-
+-    // 3. Create server authentication session
+-    const sessionResponse = await fetch(
+-      "/api/auth/session",
+-      {
+-        method: "POST",
+-        headers: {
+-          "Content-Type": "application/json",
+-        },
+-        credentials: "include",
+-        body: JSON.stringify({
+-          idToken,
+-        }),
+-      }
+-    );
+-
+-    const sessionData =
+-      await sessionResponse.json();
+-
+-    console.log(
+-      "AUTH SESSION RESPONSE:",
+-      sessionData
+-    );
+-
+-    if (!sessionResponse.ok) {
+-      throw new Error(
+-        sessionData?.error ||
+-          "Unable to create login session."
+-      );
+-    }
++    firebaseUser: import("firebase/auth").User
++  ) {
++    // Firebase token -> Prisma user sync -> server session cookie
++    const { session } =
++      await syncUserWithDatabase(firebaseUser);
+ 
+-    // 4. Make sure the server actually returned a user
+-    if (!sessionData?.user) {
++    const user = session?.user;
++
++    if (!user) {
+       throw new Error(
+         "Login session was created, but no user was returned."
+       );
+     }
+ 
+-    // 5. Send user to the correct place
+-    if (
+-      sessionData.user.onboardingComplete
+-    ) {
++    if (user.onboardingComplete) {
+       router.push("/dashboard");
+     } else {
+       router.push("/onboarding");
+     }
+ 
+     router.refresh();
+-  } catch (error) {
+-    throw error;
+   }
+-}
++
+   async function handleEmailLogin(
+     event: FormEvent<HTMLFormElement>
+   ) {
+diff --git a/components/auth/signupForm.tsx b/components/auth/signupForm.tsx
+index 9e43330..059277a 100644
+--- a/components/auth/signupForm.tsx
++++ b/components/auth/signupForm.tsx
+@@ -143,6 +143,10 @@ export function SignupForm() {
+           "Unable to create your login session."
+       );
+     }
++
++    return sessionData.user as
++      | { onboardingComplete?: boolean }
++      | undefined;
+   }
+ 
+   /**
+@@ -205,14 +209,14 @@ export function SignupForm() {
+       /*
+        * 3. Sync + create server session
+        */
+-      await createServerSession(
++      const appUser = await createServerSession(
+         credential.user
+       );
+ 
+       /*
+        * 4. Redirect
+        */
+-if (credential.user.onboardingComplete) {
++if (appUser?.onboardingComplete) {
+   router.push("/dashboard");
+ } else {
+   router.push("/onboarding");
+@@ -261,14 +265,14 @@ if (credential.user.onboardingComplete) {
+           provider
+         );
+ 
+-   await createServerSession(
++      const appUser = await createServerSession(
+         credential.user
+       );
+ 
+       /*
+        * 4. Redirect
+        */
+-      if (credential.user.onboardingComplete) {
++      if (appUser?.onboardingComplete) {
+         router.push("/dashboard");
+       } else {
+         router.push("/onboarding");
+diff --git a/components/goals/goalCard.tsx b/components/goals/goalCard.tsx
+index f0f490c..8e08e89 100644
+--- a/components/goals/goalCard.tsx
++++ b/components/goals/goalCard.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import { useState } from "react";
+-import type { Goal } from "./goalPage";
++import type { Goal, SubGoal } from "./goalTypes";
+ 
+ type Props = {
+   goal: Goal;
+@@ -11,8 +11,8 @@ type Props = {
+   onEdit: (goal: Goal) => void;
+ 
+   onAddSubGoal: (goal: Goal) => void;
+-  onToggleSubGoal: (goal: Goal) => void;
+-  onEditSubGoal: (goal: Goal) => void;
++  onToggleSubGoal: (subGoal: SubGoal) => void;
++  onEditSubGoal: (subGoal: SubGoal) => void;
+ };
+ 
+ 
+diff --git a/components/goals/goalFilters.tsx b/components/goals/goalFilters.tsx
+index 56a9f0a..602dbfa 100644
+--- a/components/goals/goalFilters.tsx
++++ b/components/goals/goalFilters.tsx
+@@ -1,6 +1,6 @@
+ "use client";
+ 
+-import { GoalFilters as GoalFilterState } from "./goalPage";
++import { GoalFilters as GoalFilterState } from "./goalTypes";
+ 
+ type Props = {
+   filters: GoalFilterState;
+diff --git a/components/goals/goalList.tsx b/components/goals/goalList.tsx
+index 16c45ee..e3ed118 100644
+--- a/components/goals/goalList.tsx
++++ b/components/goals/goalList.tsx
+@@ -1,5 +1,5 @@
+ import GoalCard from "./goalCard";
+-import type { Goal } from "@/app/goals/page";
++import type { Goal, SubGoal } from "./goalTypes";
+ 
+ type GoalListProps = {
+   goals: Goal[];
+@@ -10,8 +10,8 @@ type GoalListProps = {
+   onEdit: (goal: Goal) => void;
+ 
+   onAddSubGoal: (goal: Goal) => void;
+-  onToggleSubGoal: (goal: Goal) => void;
+-  onEditSubGoal: (goal: Goal) => void;
++  onToggleSubGoal: (subGoal: SubGoal) => void;
++  onEditSubGoal: (subGoal: SubGoal) => void;
+ };
+ 
+ export default function GoalList({
+diff --git a/components/goals/goalModal.tsx b/components/goals/goalModal.tsx
+index 86ff4bf..c2eb9a7 100644
+--- a/components/goals/goalModal.tsx
++++ b/components/goals/goalModal.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import { useEffect, useState } from "react";
+-import type { Goal } from "./goalPage";
++import type { Goal } from "./goalTypes";
+ 
+ type Props = {
+   open: boolean;
+diff --git a/components/goals/goalPage.tsx b/components/goals/goalPage.tsx
+deleted file mode 100644
+index 85c0ff9..0000000
+--- a/components/goals/goalPage.tsx
++++ /dev/null
+@@ -1,418 +0,0 @@
+-"use client";
+-
+-import { useCallback, useEffect, useState } from "react";
+-
+-import GoalSearch from "./goalSearch";
+-import GoalFilters from "./goalFilters";
+-import GoalList from "./goalList";
+-import GoalModal from "./goalModal";
+-
+-export type Goal = {
+-  id: string;
+-  parentGoalId: string | null;
+-
+-  title: string;
+-  description: string | null;
+-
+-  period:
+-    | "DAILY"
+-    | "WEEKLY"
+-    | "MONTHLY"
+-    | "QUARTERLY"
+-    | "ANNUAL";
+-
+-  status:
+-    | "ACTIVE"
+-    | "COMPLETED"
+-    | "PAUSED"
+-    | "CANCELLED"
+-    | "ARCHIVED";
+-
+-  priority:
+-    | "LOW"
+-    | "MEDIUM"
+-    | "HIGH"
+-    | "URGENT";
+-
+-  progressType:
+-    | "MANUAL"
+-    | "METRIC"
+-    | "SUBGOALS";
+-
+-  metricType:
+-    | "NUMBER"
+-    | "CURRENCY"
+-    | "PERCENTAGE"
+-    | "HOURS"
+-    | "MINUTES"
+-    | "CUSTOM"
+-    | null;
+-
+-  metricName: string | null;
+-  unit: string | null;
+-
+-  metricDirection:
+-    | "INCREASE"
+-    | "DECREASE";
+-
+-  startValue: number | null;
+-  currentValue: number | null;
+-  targetValue: number | null;
+-
+-  startDate: string | null;
+-  targetDate: string | null;
+-  completedAt: string | null;
+-
+-  createdAt: string;
+-  updatedAt: string;
+-
+-  subGoals?: Goal[];
+-
+-  _count?: {
+-    subGoals: number;
+-    tasks: number;
+-    progressEntries: number;
+-  };
+-};
+-
+-export type GoalFilters = {
+-  status: string;
+-  priority: string;
+-  period: string;
+-};
+-
+-export default function GoalPage() {
+-  const [goals, setGoals] = useState<Goal[]>([]);
+-
+-  const [search, setSearch] = useState("");
+-
+-  const [filters, setFilters] = useState<GoalFilters>({
+-    status: "",
+-    priority: "",
+-    period: "",
+-  });
+-
+-  const [loading, setLoading] = useState(true);
+-  const [error, setError] = useState<string | null>(null);
+-
+-  const [goalModalOpen, setGoalModalOpen] =
+-    useState(false);
+-
+-  const [editingGoal, setEditingGoal] =
+-    useState<Goal | null>(null);
+-
+-  const [parentGoal, setParentGoal] =
+-    useState<Goal | null>(null);
+-
+-  const [pagination, setPagination] = useState({
+-    page: 1,
+-    limit: 50,
+-    total: 0,
+-    totalPages: 1,
+-    hasNextPage: false,
+-    hasPreviousPage: false,
+-  });
+-  
+-
+-  const fetchGoals = useCallback(
+-    async (page = 1) => {
+-      try {
+-        setLoading(true);
+-        setError(null);
+-
+-        const params = new URLSearchParams();
+-
+-        if (search.trim()) {
+-          params.set("search", search.trim());
+-        }
+-
+-        if (filters.status) {
+-          params.set("status", filters.status);
+-        }
+-
+-        if (filters.priority) {
+-          params.set("priority", filters.priority);
+-        }
+-
+-        if (filters.period) {
+-          params.set("period", filters.period);
+-        }
+-
+-        params.set("page", String(page));
+-        params.set("limit", "50");
+-
+-        const response = await fetch(
+-          `/api/goals?${params.toString()}`,
+-          {
+-            method: "GET",
+-            credentials: "include",
+-          }
+-        );
+-
+-        const data = await response.json();
+-
+-        if (!response.ok) {
+-          throw new Error(
+-            data.message || "Failed to load goals."
+-          );
+-        }
+-
+-        setGoals(data.data);
+-        setPagination(data.pagination);
+-      } catch (err) {
+-        console.error(err);
+-
+-        setError(
+-          err instanceof Error
+-            ? err.message
+-            : "Something went wrong."
+-        );
+-      } finally {
+-        setLoading(false);
+-      }
+-    },
+-    [search, filters]
+-  );
+-
+-  useEffect(() => {
+-    const timeout = setTimeout(() => {
+-      fetchGoals(1);
+-    }, 300);
+-
+-    return () => clearTimeout(timeout);
+-  }, [fetchGoals]);
+-
+-  function updateFilter(
+-    key: keyof GoalFilters,
+-    value: string
+-  ) {
+-    setFilters((current) => ({
+-      ...current,
+-      [key]: value,
+-    }));
+-  }
+-
+-  function clearFilters() {
+-    setSearch("");
+-
+-    setFilters({
+-      status: "",
+-      priority: "",
+-      period: "",
+-    });
+-  }
+-
+-function openCreateModal() {
+-  setEditingGoal(null);
+-  setParentGoal(null);
+-  setModalOpen(true);
+-}
+-
+-function openEditModal(goal: Goal) {
+-  setEditingGoal(goal);
+-  setParentGoal(null);
+-  setModalOpen(true);
+-}
+-
+-function openAddSubGoalModal(goal: Goal) {
+-  setEditingGoal(null);
+-  setParentGoal(goal);
+-  setModalOpen(true);
+-}
+-
+-  function openSubGoalModal(goal: Goal) {
+-    setEditingGoal(null);
+-    setParentGoal(goal);
+-    setGoalModalOpen(true);
+-  }
+-
+-  async function deleteGoal(goalId: string) {
+-    const confirmed = window.confirm(
+-      "Are you sure you want to delete this goal?"
+-    );
+-
+-    if (!confirmed) return;
+-
+-    try {
+-      const response = await fetch(
+-        `/api/goals/${goalId}`,
+-        {
+-          method: "DELETE",
+-          credentials: "include",
+-        }
+-      );
+-
+-      const data = await response.json();
+-
+-      if (!response.ok) {
+-        throw new Error(
+-          data.message || "Failed to delete goal."
+-        );
+-      }
+-
+-      setGoals((current) =>
+-        current.filter(
+-          (goal) => goal.id !== goalId
+-        )
+-      );
+-
+-      setPagination((current) => ({
+-        ...current,
+-        total: Math.max(current.total - 1, 0),
+-      }));
+-    } catch (err) {
+-      console.error(err);
+-
+-      setError(
+-        err instanceof Error
+-          ? err.message
+-          : "Failed to delete goal."
+-      );
+-    }
+-  }
+-
+-  const hasFilters =
+-    Boolean(search) ||
+-    Object.values(filters).some(Boolean);
+-
+-  return (
+-    <main className="min-h-screen px-6 py-8">
+-      <div className="mx-auto max-w-7xl">
+-
+-        {/* Header */}
+-        <div className="mb-8 flex items-start justify-between gap-4">
+-          <div>
+-            <p className="mb-2 text-sm font-medium uppercase tracking-wider opacity-60">
+-              Productivity
+-            </p>
+-
+-            <h1 className="text-3xl font-bold">
+-              Goals
+-            </h1>
+-
+-            <p className="mt-2 opacity-60">
+-              Turn bigger ambitions into achievable milestones.
+-            </p>
+-          </div>
+-
+-          <button
+-            type="button"
+-            onClick={openCreateModal}
+-            className="rounded-xl px-5 py-3 font-medium"
+-          >
+-            + New Goal
+-          </button>
+-        </div>
+-
+-        {/* Search */}
+-        <div className="mb-4">
+-          <GoalSearch
+-            value={search}
+-            onChange={setSearch}
+-          />
+-        </div>
+-
+-        {/* Filters */}
+-        <div className="mb-6">
+-          <GoalFilters
+-            filters={filters}
+-            onChange={updateFilter}
+-            onClear={clearFilters}
+-            hasFilters={hasFilters}
+-          />
+-        </div>
+-
+-        {/* Error */}
+-        {error && (
+-          <div className="mb-6 rounded-xl border border-red-300 p-4 text-sm">
+-            {error}
+-          </div>
+-        )}
+-
+-        {/* Count */}
+-        {!loading && (
+-          <div className="mb-4 text-sm opacity-60">
+-            {pagination.total}{" "}
+-            {pagination.total === 1
+-              ? "goal"
+-              : "goals"}
+-          </div>
+-        )}
+-
+-        {/* Goals */}
+-<GoalList
+-  goals={goals}
+-  loading={loading}
+-  onToggle={toggleGoal}
+-  onDelete={deleteGoal}
+-  onEdit={openEditModal}
+-  onAddSubGoal={openAddSubGoalModal}
+-  onToggleSubGoal={toggleSubGoal}
+-  onEditSubGoal={openEditSubGoalModal}
+-/>
+-
+-        {/* Pagination */}
+-        {!loading &&
+-          pagination.totalPages > 1 && (
+-            <div className="mt-8 flex items-center justify-center gap-4">
+-              <button
+-                disabled={
+-                  !pagination.hasPreviousPage
+-                }
+-                onClick={() =>
+-                  fetchGoals(
+-                    pagination.page - 1
+-                  )
+-                }
+-                className="rounded-lg border px-4 py-2 disabled:opacity-40"
+-              >
+-                Previous
+-              </button>
+-
+-              <span className="text-sm opacity-60">
+-                Page {pagination.page} of{" "}
+-                {pagination.totalPages}
+-              </span>
+-
+-              <button
+-                disabled={
+-                  !pagination.hasNextPage
+-                }
+-                onClick={() =>
+-                  fetchGoals(
+-                    pagination.page + 1
+-                  )
+-                }
+-                className="rounded-lg border px-4 py-2 disabled:opacity-40"
+-              >
+-                Next
+-              </button>
+-            </div>
+-          )}
+-      </div>
+-
+-    <GoalModal
+-  open={modalOpen}
+-  onClose={() =>
+-    setModalOpen(false)
+-  }
+-  goal={editingGoal}
+-  parentGoal={parentGoal}
+-  onCreated={() => {
+-    setModalOpen(false);
+-    setEditingGoal(null);
+-    setParentGoal(null);
+-    fetchGoals(1);
+-  }}
+-  onUpdated={() => {
+-    setModalOpen(false);
+-    setEditingGoal(null);
+-    setParentGoal(null);
+-    fetchGoals(
+-      pagination.page
+-    );
+-  }}
+-/>
+-    </main>
+-  );
+-}
+diff --git a/components/goals/goalTypes.ts b/components/goals/goalTypes.ts
+new file mode 100644
+index 0000000..2c766e9
+--- /dev/null
++++ b/components/goals/goalTypes.ts
+@@ -0,0 +1,94 @@
++/** Lightweight sub-goal summary embedded in a Goal. */
++export type SubGoal = {
++  id: string;
++  title: string;
++  description: string | null;
++  status:
++    | "ACTIVE"
++    | "COMPLETED"
++    | "PAUSED"
++    | "CANCELLED"
++    | "ARCHIVED";
++  priority: "LOW" | "MEDIUM" | "HIGH" | "URGENT";
++  targetDate: string | null;
++  parentGoalId?: string | null;
++};
++
++export type Goal = {
++id: string;
++title: string;
++description: string | null;
++
++parentGoalId: string | null;
++
++period:
++| "DAILY"
++| "WEEKLY"
++| "MONTHLY"
++| "QUARTERLY"
++| "ANNUAL";
++
++status:
++| "ACTIVE"
++| "COMPLETED"
++| "PAUSED"
++| "CANCELLED"
++| "ARCHIVED";
++
++priority:
++| "LOW"
++| "MEDIUM"
++| "HIGH"
++| "URGENT";
++
++progressType:
++| "MANUAL"
++| "METRIC"
++| "SUBGOALS";
++
++metricType:
++| "NUMBER"
++| "CURRENCY"
++| "PERCENTAGE"
++| "HOURS"
++| "MINUTES"
++| "CUSTOM"
++| null;
++
++metricName: string | null;
++unit: string | null;
++
++metricDirection:
++| "INCREASE"
++| "DECREASE";
++
++startValue: number | string | null;
++currentValue: number | string | null;
++targetValue: number | string | null;
++
++startDate: string | null;
++targetDate: string | null;
++completedAt: string | null;
++
++createdAt: string;
++updatedAt: string;
++
++parentGoal?: {
++id: string;
++title: string;
++status: string;
++} | null;
++subGoals: SubGoal[];
++_count: {
++subGoals: number;
++tasks: number;
++progressEntries: number;
++};
++};
++
++export type GoalFilters = {
++status: string;
++priority: string;
++period: string;
++progressType: string;
++};

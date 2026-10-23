@@ -25,7 +25,7 @@ export function SecuritySettings({
 
   async function handleSignOutEverywhere() {
     const confirmed = window.confirm(
-      "Sign out of all NEXUS sessions?"
+      "Sign out of all PULSE sessions?"
     );
 
     if (!confirmed) return;
@@ -61,7 +61,7 @@ export function SecuritySettings({
 
         <p className="mt-1 text-sm text-muted-foreground">
           Manage how you sign in and access your
-          NEXUS account.
+          PULSE account.
         </p>
       </div>
 
@@ -141,7 +141,7 @@ export function SecuritySettings({
               </h3>
 
               <p className="mt-1 text-xs text-muted-foreground">
-                Manage your active NEXUS authentication
+                Manage your active PULSE authentication
                 session.
               </p>
             </div>
@@ -159,7 +159,7 @@ export function SecuritySettings({
 
               <p className="mt-1 text-xs text-muted-foreground">
                 You are currently signed in to this
-                NEXUS workspace.
+                PULSE workspace.
               </p>
             </div>
           </div>
@@ -179,7 +179,7 @@ export function SecuritySettings({
             </h3>
 
             <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-              Sign out of your current NEXUS session.
+              Sign out of your current PULSE session.
             </p>
           </div>
 
@@ -222,7 +222,7 @@ export function SecuritySettings({
             </p>
 
             <p className="mt-1 text-xs text-muted-foreground">
-              Permanently delete your NEXUS account
+              Permanently delete your PULSE account
               and associated data.
             </p>
           </div>

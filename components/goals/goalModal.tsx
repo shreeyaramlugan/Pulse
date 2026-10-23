@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Goal } from "./goalPage";
+import type { Goal } from "./goalTypes";
 
 type Props = {
   open: boolean;

@@ -35,7 +35,7 @@ export function IntegrationsSettings() {
         id: "drive",
         name: "Google Drive",
         description:
-          "Store and access documents and files from your NEXUS workspace.",
+          "Store and access documents and files from your PULSE workspace.",
         icon: HardDrive,
         connected: false,
       },
@@ -43,7 +43,7 @@ export function IntegrationsSettings() {
         id: "telegram",
         name: "Telegram",
         description:
-          "Receive NEXUS notifications and interact with your workspace.",
+          "Receive PULSE notifications and interact with your workspace.",
         icon: MessageCircle,
         connected: false,
       },
@@ -98,7 +98,7 @@ export function IntegrationsSettings() {
         </h2>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          Connect NEXUS to the tools and services
+          Connect PULSE to the tools and services
           you already use.
         </p>
       </div>
@@ -190,7 +190,7 @@ export function IntegrationsSettings() {
             <p className="mt-1 text-xs text-muted-foreground">
               Calendar, automation and additional
               productivity integrations can be added
-              here as the NEXUS ecosystem grows.
+              here as the PULSE ecosystem grows.
             </p>
           </div>
         </div>

@@ -12,7 +12,7 @@ export function AppearanceSettings() {
 
         <p className="mt-1 text-sm text-muted-foreground">
           Choose the visual language for your
-          NEXUS workspace.
+          PULSE workspace.
         </p>
       </div>
 

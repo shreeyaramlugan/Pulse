@@ -143,6 +143,10 @@ export function SignupForm() {
           "Unable to create your login session."
       );
     }
+
+    return sessionData.user as
+      | { onboardingComplete?: boolean }
+      | undefined;
   }
 
   /**
@@ -205,14 +209,14 @@ export function SignupForm() {
       /*
        * 3. Sync + create server session
        */
-      await createServerSession(
+      const appUser = await createServerSession(
         credential.user
       );
 
       /*
        * 4. Redirect
        */
-if (credential.user.onboardingComplete) {
+if (appUser?.onboardingComplete) {
   router.push("/dashboard");
 } else {
   router.push("/onboarding");
@@ -261,14 +265,14 @@ if (credential.user.onboardingComplete) {
           provider
         );
 
-   await createServerSession(
+      const appUser = await createServerSession(
         credential.user
       );
 
       /*
        * 4. Redirect
        */
-      if (credential.user.onboardingComplete) {
+      if (appUser?.onboardingComplete) {
         router.push("/dashboard");
       } else {
         router.push("/onboarding");

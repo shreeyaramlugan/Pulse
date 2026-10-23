@@ -714,8 +714,7 @@ async function toggleStep(
       {editOpen && (
         <ProjectEdit
           project={project}
-          open={editOpen}
-          onClose={() =>
+          onCancel={() =>
             setEditOpen(false)
           }
           onUpdated={() => {

@@ -1,5 +1,5 @@
 import GoalCard from "./goalCard";
-import type { Goal } from "@/app/goals/page";
+import type { Goal, SubGoal } from "./goalTypes";
 
 type GoalListProps = {
   goals: Goal[];
@@ -10,8 +10,8 @@ type GoalListProps = {
   onEdit: (goal: Goal) => void;
 
   onAddSubGoal: (goal: Goal) => void;
-  onToggleSubGoal: (goal: Goal) => void;
-  onEditSubGoal: (goal: Goal) => void;
+  onToggleSubGoal: (subGoal: SubGoal) => void;
+  onEditSubGoal: (subGoal: SubGoal) => void;
 };
 
 export default function GoalList({

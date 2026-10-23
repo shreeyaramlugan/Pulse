@@ -6,10 +6,10 @@ import {
 } from "next/server";
 
 import {
-  Prisma,
   ProjectPriority,
   ProjectStatus,
 } from "@/app/generated/prisma/enums";
+import { Prisma } from "@/app/generated/prisma/client";
 
 import { prisma } from "@/prisma";
 import { getCurrentUser } from "@/lib/auth";

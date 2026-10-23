@@ -45,69 +45,29 @@ export function LoginForm() {
    * /dashboard
    */
 async function finishLogin(
-  firebaseUser: import("firebase/auth").User
-) {
-  try {
-    // 1. Get a fresh Firebase ID token
-    const idToken = await firebaseUser.getIdToken(true);
+    firebaseUser: import("firebase/auth").User
+  ) {
+    // Firebase token -> Prisma user sync -> server session cookie
+    const { session } =
+      await syncUserWithDatabase(firebaseUser);
 
-    // 2. Sync Firebase user → Prisma
-    await syncUserWithDatabase(
-      firebaseUser,
-      idToken
-    );
+    const user = session?.user;
 
-    // 3. Create server authentication session
-    const sessionResponse = await fetch(
-      "/api/auth/session",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          idToken,
-        }),
-      }
-    );
-
-    const sessionData =
-      await sessionResponse.json();
-
-    console.log(
-      "AUTH SESSION RESPONSE:",
-      sessionData
-    );
-
-    if (!sessionResponse.ok) {
-      throw new Error(
-        sessionData?.error ||
-          "Unable to create login session."
-      );
-    }
-
-    // 4. Make sure the server actually returned a user
-    if (!sessionData?.user) {
+    if (!user) {
       throw new Error(
         "Login session was created, but no user was returned."
       );
     }
 
-    // 5. Send user to the correct place
-    if (
-      sessionData.user.onboardingComplete
-    ) {
+    if (user.onboardingComplete) {
       router.push("/dashboard");
     } else {
       router.push("/onboarding");
     }
 
     router.refresh();
-  } catch (error) {
-    throw error;
   }
-}
+
   async function handleEmailLogin(
     event: FormEvent<HTMLFormElement>
   ) {

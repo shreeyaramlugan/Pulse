@@ -103,7 +103,7 @@ export function PreferenceSettings({
         </h2>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          Configure how NEXUS displays dates,
+          Configure how PULSE displays dates,
           times and your workspace.
         </p>
       </div>
