@@ -35,7 +35,6 @@ export type SmartTaskResult = {
   };
 
   schedule: ScheduledTask | null;
-parentTaskId: string | null;
   recommendations: string[];
 };
 
@@ -67,7 +66,6 @@ export type SmartTaskEngineResult = {
 
     overloadedDays: number;
   };
-  parentTaskId: string | null;
 };
 
 
@@ -278,6 +276,8 @@ const dependencyTasks: DependencyTask[] =
             task.estimatedMinutes,
 
           dueDate: task.dueDate,
+
+          status: task.status,
 
           priorityScore:
             priority.score,

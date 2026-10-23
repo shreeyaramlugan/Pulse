@@ -5,6 +5,7 @@ export type SchedulingTask = {
   title: string;
   estimatedMinutes: number | null;
   dueDate: Date | string | null;
+  status?: string;
   priorityScore: number;
   blocked: boolean;
 };

@@ -9,6 +9,8 @@ export type PriorityLevel =
 export type SmartTask = {
   id: string;
   title: string;
+  description?: string | null;
+  parentTaskId?: string | null;
 
   status:
     | "TODO"
@@ -88,7 +90,7 @@ function clamp(
 }
 
 function daysUntil(
-  date: Date | string | null
+  date: Date | string | null | undefined
 ) {
   if (!date) return null;
 
@@ -125,7 +127,7 @@ function priorityScore(
 }
 
 function deadlineScore(
-  date: Date | string | null
+  date: Date | string | null | undefined
 ) {
   const days = daysUntil(date);
 
